@@ -23,6 +23,9 @@ import {
   Star,
 } from "lucide-react";
 import { PageShell, Container, Eyebrow, SectionHeading } from "@/components/site";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import careerFormBg from "@/assets/career-form.png";
 
 export const Route = createFileRoute("/careers")({
@@ -472,13 +475,15 @@ function CareersPage() {
                 </div>
 
                 <div className="mt-2 pt-2">
-                  <button
+                  <Button
                     type="submit"
+                    variant="none"
+                    size="none"
                     className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-copper px-6 py-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-glow cursor-pointer shadow-md hover:shadow-lg active:scale-[0.99]"
                   >
                     <span>Submit Application</span>
                     <Send className="h-4 w-4" />
-                  </button>
+                  </Button>
                   {sent && (
                     <p className="text-sm text-copper font-medium mt-4 text-center">
                       Thanks — your application has been received. We'll be in touch soon.
@@ -531,7 +536,8 @@ function FloatingField({
             {label}
             {required && <span className="text-red-500 ml-0.5">*</span>}
           </label>
-          <input
+          <Input
+            unstyled
             type={type}
             value={value}
             required={required}
@@ -621,7 +627,8 @@ function FloatingSelect({
       {open && (
         <div className="absolute z-50 left-0 right-0 top-full mt-2 bg-white/95 backdrop-blur-md border border-neutral-200 rounded-2xl shadow-xl overflow-hidden py-2">
           <div className="px-3 py-1.5 border-b border-neutral-100 flex items-center gap-2">
-            <input
+            <Input
+              unstyled
               type="text"
               placeholder="Search positions..."
               value={search}
@@ -698,7 +705,8 @@ function FloatingTextarea({
             {label}
             {required && <span className="text-red-500 ml-0.5">*</span>}
           </label>
-          <textarea
+          <Textarea
+            unstyled
             value={value}
             rows={rows}
             onFocus={() => setFocused(true)}
