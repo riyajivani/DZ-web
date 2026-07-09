@@ -95,7 +95,7 @@ function PartnerPage() {
       <section id="contact-form" className="py-20 md:py-28 relative overflow-hidden mb-28">
         {/* Background Image Underlay */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.45] lg:opacity-[0.38] pointer-events-none z-0"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.20] lg:opacity-[0.20] pointer-events-none z-0"
           style={{ backgroundImage: `url(${talkToUsBg})` }}
         />
         {/* Top/Bottom Fade Gradients */}
@@ -180,8 +180,8 @@ function PartnerPage() {
                     {
                       icon: Phone,
                       label: "Call Us",
-                      value: "+91 93285 25395",
-                      href: "tel:+919328525395",
+                      value: "+91 93278 53727",
+                      href: "tel:+919327853727",
                     },
                     {
                       icon: MapPin,

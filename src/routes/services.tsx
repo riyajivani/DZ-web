@@ -16,14 +16,7 @@ import {
   ChevronRight,
   Quote,
 } from "lucide-react";
-import {
-  PageShell,
-  Container,
-  SectionHeading,
-  PartnerButton,
-  CTAButton,
-  Eyebrow,
-} from "@/components/site";
+import { PageShell, Container, PartnerButton, CTAButton, Eyebrow } from "@/components/site";
 
 // Import project images
 import projConstruction from "@/assets/project-construction.jpg";
@@ -31,12 +24,20 @@ import projFieldApp from "@/assets/project-fieldapp.jpg";
 import projLogistics from "@/assets/project-logistics.jpg";
 import projAI from "@/assets/project-ai.jpg";
 import serviceAi from "@/assets/service-ai.jpg";
-import serviceMobile from "@/assets/service-mobile.jpg";
-import serviceSoftware from "@/assets/service-software.jpg";
 import serviceWorkflow from "@/assets/service-workflow.jpg";
 import projCloud from "@/assets/project-cloud.jpg";
 import projCrm from "@/assets/project-crm.jpg";
 import talkToUsBg from "@/assets/talkToUs-bg.png";
+
+import customSoft1 from "@/assets/custom-soft1.png";
+import customSoft2 from "@/assets/custom-soft2.png";
+import AppDev1 from "@/assets/app-dev1.png";
+import AppDev2 from "@/assets/app-dev2.png";
+import AppDev3 from "@/assets/app-dev3.png";
+import Erp1 from "@/assets/erp1.png";
+import Erp2 from "@/assets/erp2.png";
+import AiService1 from "@/assets/ai-service1.png";
+import AiService2 from "@/assets/ai-service2.png";
 
 // Import Client Avatars for Testimonials
 import avatarRajesh from "@/assets/avatar-rajesh.png";
@@ -72,7 +73,7 @@ const SERVICES = [
       "API Integration",
       "Database Administration",
     ],
-    images: [serviceSoftware, projCloud, projLogistics],
+    images: [customSoft1, projCloud, customSoft2],
   },
   {
     title: "Mobile App Development",
@@ -84,7 +85,7 @@ const SERVICES = [
       "User-Centric UI/UX",
       "App Store Deployment",
     ],
-    images: [serviceMobile, projFieldApp, projLogistics],
+    images: [AppDev1, AppDev3, AppDev2],
   },
   {
     title: "Workflow Automation",
@@ -96,7 +97,7 @@ const SERVICES = [
       "Real-time Notifications",
       "Custom ERP Integrations",
     ],
-    images: [serviceWorkflow, projCrm, projConstruction],
+    images: [Erp1, projConstruction, Erp2],
   },
   {
     title: "AI & Data Intelligence",
@@ -108,7 +109,7 @@ const SERVICES = [
       "Anomaly Detection",
       "Business Intelligence Systems",
     ],
-    images: [serviceAi, projAI, projCloud],
+    images: [AiService1, projAI, AiService2],
   },
 ];
 

@@ -2,7 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ArrowRight, Mail, Phone, MapPin, Linkedin, Twitter, Github } from "lucide-react";
-import logoSvg from "@/assets/DZInfotech.svg";
+// import logoSvg from "@/assets/DZInfotech.svg";
+import dzSvg from "@/assets/dz.svg";
+import infotechSvg from "@/assets/infotech.svg";
 import footerPng from "@/assets/footer1.png";
 
 export function Container({
@@ -129,11 +131,9 @@ export function Navbar() {
       }`}
     >
       <Container className="flex h-18 items-center justify-between py-4">
-        <Link to="/" className="flex items-center gap-2">
-          <img src={logoSvg} alt="DZ Infotech" className="h-auto w-16 object-contain" />
-          <span className="hidden text-sm font-semibold tracking-wide text-foreground sm:inline">
-            DZ INFOTECH
-          </span>
+        <Link to="/" className="flex items-end gap-1">
+          <img src={dzSvg} alt="DZ Infotech" className="h-auto w-12 md:w-16 object-contain" />
+          <img src={infotechSvg} alt="DZ Infotech" className="h-auto w-24 md:w-32 object-contain" />
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
@@ -206,8 +206,13 @@ export function Footer() {
       <Container className="relative z-10 pb-16">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="flex flex-col items-center text-center md:items-start md:text-left md:col-span-5">
-            <div className="flex items-center gap-3 justify-center md:justify-start">
-              <img src={logoSvg} alt="DZ Infotech" className="h-auto w-30 object-contain" />
+            <div className="flex items-end gap-1 justify-center md:justify-start">
+              <img src={dzSvg} alt="DZ Infotech" className="h-auto w-24 md:w-30 object-contain" />
+              <img
+                src={infotechSvg}
+                alt="DZ Infotech"
+                className="h-auto w-48 md:w-64 object-contain"
+              />
             </div>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-neutral-600">
               A technology partner building custom software, mobile apps, workflow automation and
@@ -295,7 +300,7 @@ export function Footer() {
                 <Mail className="mt-0.5 h-4 w-4 text-blue-600 shrink-0" /> info@dzinfotech.in
               </li>
               <li className="flex items-start gap-2">
-                <Phone className="mt-0.5 h-4 w-4 text-blue-600 shrink-0" /> +91 93285 25395
+                <Phone className="mt-0.5 h-4 w-4 text-blue-600 shrink-0" /> +91 93278 53727
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 text-blue-600 shrink-0" /> Bhavnagar,Gujarat,India
