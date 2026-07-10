@@ -21,12 +21,14 @@ import {
   ChevronDown,
   FileText,
   Star,
+  Loader2,
 } from "lucide-react";
 import { PageShell, Container, Eyebrow, SectionHeading } from "@/components/site";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import careerFormBg from "@/assets/career-form.png";
+import { Form } from "react-hook-form";
 
 export const Route = createFileRoute("/careers")({
   head: () => ({
@@ -146,6 +148,9 @@ function CareersPage() {
     message: "",
   });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [highlightedIndex, setHighlightedIndex] = useState(0);
 
   useEffect(() => {
@@ -155,9 +160,99 @@ function CareersPage() {
     return () => clearInterval(interval);
   }, []);
 
-  const submit = (e: React.FormEvent) => {
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!form.name.trim()) {
+      newErrors.name = "Full Name is required";
+    } else if (form.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters long";
+    }
+
+    if (!form.email.trim()) {
+      newErrors.email = "Email is required";
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(form.email.trim())) {
+        newErrors.email = "Please enter a valid email address";
+      }
+    }
+
+    if (form.phone.trim()) {
+      const phoneRegex = /^[+]?[0-9\s\-()]{7,20}$/;
+      if (!phoneRegex.test(form.phone.trim())) {
+        newErrors.phone = "Please enter a valid phone number (at least 7 digits)";
+      }
+    }
+
+    if (!form.position) {
+      newErrors.position = "Please select a position";
+    }
+
+    if (form.portfolio.trim()) {
+      if (!/^https?:\/\/[^\s$.?#].[^\s]*$/i.test(form.portfolio.trim())) {
+        newErrors.portfolio = "Please enter a valid URL (starting with http:// or https://)";
+      }
+    }
+
+    if (!form.message.trim()) {
+      newErrors.message = "Please tell us why you would like to join";
+    } else if (form.message.trim().length < 20) {
+      newErrors.message = "Please write a bit more details (minimum 20 characters)";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    if (!validateForm()) return;
+
+    setLoading(true);
+    setError(null);
+    setSent(false);
+
+    try {
+      const params = new URLSearchParams();
+      params.append("name", form.name);
+      params.append("email", form.email);
+      params.append("phone", form.phone);
+      params.append("position", form.position);
+      params.append("portfolio", form.portfolio);
+      params.append("message", form.message);
+
+      // Send as application/x-www-form-urlencoded to avoid CORS preflight options check.
+      // Use no-cors mode to safely bypass response CORS restrictions.
+      await fetch(
+        "https://script.google.com/macros/s/AKfycby0vgvRDdrSmkjCOvQciwDW5dASUfe_i3zn7yU6vIZn0E5kS5-5IFHYuyL8Sm25wKBqDQ/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: params.toString(),
+        }
+      );
+
+      setSent(true);
+      // Reset form on success
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        position: "",
+        portfolio: "",
+        message: "",
+      });
+      setErrors({});
+    } catch (err: any) {
+      console.error("Submission error:", err);
+      setError("Something went wrong. Please try again or contact us directly at careers@dzinfotech.com.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -213,17 +308,15 @@ function CareersPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.6, delay: i * 0.08 }}
-                  className={`rounded-3xl border transition-all duration-300 p-8 flex flex-col justify-between min-h-[220px] bg-white ${
-                    isHighlighted
+                  className={`rounded-3xl border transition-all duration-300 p-8 flex flex-col justify-between min-h-[220px] bg-white ${isHighlighted
                       ? "border-copper shadow-lg scale-[1.03]"
                       : "border-border/60 hover:border-copper/45 hover:shadow-lg"
-                  }`}
+                    }`}
                 >
                   <div>
                     <div
-                      className={`flex h-11 w-11 items-center justify-center rounded-xl border transition-all duration-300 border-copper/30 bg-copper/5 text-copper ${
-                        isHighlighted ? "animate-pulse" : ""
-                      }`}
+                      className={`flex h-11 w-11 items-center justify-center rounded-xl border transition-all duration-300 border-copper/30 bg-copper/5 text-copper ${isHighlighted ? "animate-pulse" : ""
+                        }`}
                     >
                       <w.icon className="h-5 w-5" />
                     </div>
@@ -427,17 +520,25 @@ function CareersPage() {
                     <FloatingField
                       label="Full Name"
                       value={form.name}
-                      onChange={(v) => setForm({ ...form, name: v })}
+                      onChange={(v) => {
+                        setForm({ ...form, name: v });
+                        if (errors.name) setErrors((prev) => ({ ...prev, name: "" }));
+                      }}
                       required
                       icon={User}
+                      error={errors.name}
                     />
                     <FloatingField
                       label="Work Email"
                       type="email"
                       value={form.email}
-                      onChange={(v) => setForm({ ...form, email: v })}
+                      onChange={(v) => {
+                        setForm({ ...form, email: v });
+                        if (errors.email) setErrors((prev) => ({ ...prev, email: "" }));
+                      }}
                       required
                       icon={Mail}
+                      error={errors.email}
                     />
                   </div>
 
@@ -445,48 +546,74 @@ function CareersPage() {
                     <FloatingField
                       label="Phone Number"
                       value={form.phone}
-                      onChange={(v) => setForm({ ...form, phone: v })}
+                      onChange={(v) => {
+                        setForm({ ...form, phone: v });
+                        if (errors.phone) setErrors((prev) => ({ ...prev, phone: "" }));
+                      }}
                       icon={Phone}
+                      error={errors.phone}
                     />
                     <FloatingSelect
                       label="Position"
                       value={form.position}
-                      onChange={(v) => setForm({ ...form, position: v })}
+                      onChange={(v) => {
+                        setForm({ ...form, position: v });
+                        if (errors.position) setErrors((prev) => ({ ...prev, position: "" }));
+                      }}
                       options={POSITIONS}
                       required
                       icon={Briefcase}
+                      error={errors.position}
                     />
                   </div>
 
                   <FloatingField
                     label="Portfolio / Resume URL"
                     value={form.portfolio}
-                    onChange={(v) => setForm({ ...form, portfolio: v })}
+                    onChange={(v) => {
+                      setForm({ ...form, portfolio: v });
+                      if (errors.portfolio) setErrors((prev) => ({ ...prev, portfolio: "" }));
+                    }}
                     icon={LinkIcon}
+                    error={errors.portfolio}
                   />
 
                   <FloatingTextarea
                     label="Why would you like to join DZ Infotech?"
                     value={form.message}
-                    onChange={(v) => setForm({ ...form, message: v })}
+                    onChange={(v) => {
+                      setForm({ ...form, message: v });
+                      if (errors.message) setErrors((prev) => ({ ...prev, message: "" }));
+                    }}
                     required
                     icon={MessageSquare}
+                    error={errors.message}
                   />
                 </div>
 
                 <div className="mt-2 pt-2">
                   <Button
                     type="submit"
+                    disabled={loading}
                     variant="none"
                     size="none"
-                    className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-copper px-6 py-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-glow cursor-pointer shadow-md hover:shadow-lg active:scale-[0.99]"
+                    className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-copper px-6 py-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-glow cursor-pointer shadow-md hover:shadow-lg active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <span>Submit Application</span>
-                    <Send className="h-4 w-4" />
+                    <span>{loading ? "Submitting..." : "Submit Application"}</span>
+                    {loading ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Send className="h-4 w-4" />
+                    )}
                   </Button>
                   {sent && (
                     <p className="text-sm text-copper font-medium mt-4 text-center">
                       Thanks — your application has been received. We'll be in touch soon.
+                    </p>
+                  )}
+                  {error && (
+                    <p className="text-sm text-red-500 font-medium mt-4 text-center">
+                      {error}
                     </p>
                   )}
                 </div>
@@ -506,6 +633,7 @@ function FloatingField({
   type = "text",
   required,
   icon: Icon,
+  error,
 }: {
   label: string;
   value: string;
@@ -513,6 +641,7 @@ function FloatingField({
   type?: string;
   required?: boolean;
   icon: React.ComponentType<{ className?: string }>;
+    error?: string;
 }) {
   const [focused, setFocused] = useState(false);
   const active = focused || value.length > 0;
@@ -520,16 +649,24 @@ function FloatingField({
   return (
     <div className="relative flex flex-col group">
       <div
-        className={`flex items-center gap-3 border-b transition-all duration-300 px-0 py-2 bg-transparent ${focused ? "border-copper" : "border-neutral-300 hover:border-neutral-400"}`}
+        className={`flex items-center gap-3 border-b transition-all duration-300 px-0 py-2 bg-transparent ${error
+          ? "border-red-500"
+          : focused
+            ? "border-copper"
+            : "border-neutral-300 hover:border-neutral-400"
+          }`}
       >
         <Icon
-          className={`h-4 w-4 transition-colors duration-300 ${focused ? "text-copper" : "text-muted-foreground/60"}`}
+          className={`h-4 w-4 transition-colors duration-300 ${error ? "text-red-500" : focused ? "text-copper" : "text-muted-foreground/60"
+            }`}
         />
         <div className="relative grow">
           <label
             className={`absolute left-0 transition-all duration-300 pointer-events-none select-none text-xs ${
               active
-                ? "-top-2.5 text-[10px] text-copper font-semibold"
+              ? `-top-2.5 text-[10px] font-semibold ${error ? "text-red-500" : "text-copper"}`
+              : error
+                ? "top-1 text-red-500/70"
                 : "top-1 text-muted-foreground/70"
             }`}
           >
@@ -540,7 +677,6 @@ function FloatingField({
             unstyled
             type={type}
             value={value}
-            required={required}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
             onChange={(e) => onChange(e.target.value)}
@@ -549,6 +685,7 @@ function FloatingField({
           />
         </div>
       </div>
+      {error && <span className="text-[10px] text-red-500 mt-1 font-medium">{error}</span>}
     </div>
   );
 }
@@ -560,6 +697,7 @@ function FloatingSelect({
   options,
   required,
   icon: Icon,
+  error,
 }: {
   label: string;
   value: string;
@@ -567,6 +705,7 @@ function FloatingSelect({
   options: string[];
   required?: boolean;
   icon: React.ComponentType<{ className?: string }>;
+    error?: string;
 }) {
   const [focused, setFocused] = useState(false);
   const [open, setOpen] = useState(false);
@@ -594,18 +733,26 @@ function FloatingSelect({
           setFocused(true);
         }}
         className={`flex items-center gap-3 border-b transition-all duration-300 px-0 py-2 bg-transparent cursor-pointer ${
-          focused || open ? "border-copper" : "border-neutral-300 hover:border-neutral-400"
+          error
+            ? "border-red-500"
+            : focused || open
+              ? "border-copper"
+              : "border-neutral-300 hover:border-neutral-400"
         }`}
       >
         <Icon
           className={`h-4 w-4 transition-colors duration-300 ${
-            focused || open ? "text-copper" : "text-muted-foreground/60"
+            error ? "text-red-500" : focused || open ? "text-copper" : "text-muted-foreground/60"
           }`}
         />
         <div className="relative grow pr-6">
           <label
             className={`absolute left-0 transition-all duration-300 pointer-events-none select-none text-[10px] -top-2.5 font-semibold ${
-              focused || open || value ? "text-copper" : "text-muted-foreground/70"
+              error
+                ? "text-red-500"
+                : focused || open || value
+                  ? "text-copper"
+                  : "text-muted-foreground/70"
             }`}
           >
             {label}
@@ -664,6 +811,7 @@ function FloatingSelect({
           </div>
         </div>
       )}
+      {error && <span className="text-[10px] text-red-500 mt-1 font-medium">{error}</span>}
     </div>
   );
 }
@@ -675,6 +823,7 @@ function FloatingTextarea({
   required,
   icon: Icon,
   rows = 4,
+  error,
 }: {
   label: string;
   value: string;
@@ -682,6 +831,7 @@ function FloatingTextarea({
   required?: boolean;
   icon: React.ComponentType<{ className?: string }>;
   rows?: number;
+    error?: string;
 }) {
   const [focused, setFocused] = useState(false);
   const active = focused || value.length > 0;
@@ -689,16 +839,24 @@ function FloatingTextarea({
   return (
     <div className="relative flex flex-col group">
       <div
-        className={`flex items-start gap-3 border-b transition-all duration-300 px-0 py-2 bg-transparent ${focused ? "border-copper" : "border-neutral-300 hover:border-neutral-400"}`}
+        className={`flex items-start gap-3 border-b transition-all duration-300 px-0 py-2 bg-transparent ${error
+          ? "border-red-500"
+          : focused
+            ? "border-copper"
+            : "border-neutral-300 hover:border-neutral-400"
+          }`}
       >
         <Icon
-          className={`h-4 w-4 mt-2 transition-colors duration-300 ${focused ? "text-copper" : "text-muted-foreground/60"}`}
+          className={`h-4 w-4 mt-2 transition-colors duration-300 ${error ? "text-red-500" : focused ? "text-copper" : "text-muted-foreground/60"
+            }`}
         />
         <div className="relative grow">
           <label
             className={`absolute left-0 transition-all duration-300 pointer-events-none select-none text-xs ${
               active
-                ? "-top-2.5 text-[10px] text-copper font-semibold"
+              ? `-top-2.5 text-[10px] font-semibold ${error ? "text-red-500" : "text-copper"}`
+              : error
+                ? "top-1 text-red-500/70"
                 : "top-1 text-muted-foreground/70"
             }`}
           >
@@ -713,10 +871,10 @@ function FloatingTextarea({
             onBlur={() => setFocused(false)}
             onChange={(e) => onChange(e.target.value)}
             className="w-full bg-transparent text-sm outline-none pt-2 text-foreground resize-none"
-            required={required}
           />
         </div>
       </div>
+      {error && <span className="text-[10px] text-red-500 mt-1 font-medium">{error}</span>}
     </div>
   );
 }

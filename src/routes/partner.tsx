@@ -13,6 +13,7 @@ import {
   MessageSquare,
   Sparkles,
   CheckCircle2,
+  Loader2,
 } from "lucide-react";
 import { PageShell, Container, Eyebrow, SectionHeading } from "@/components/site";
 import { Button } from "@/components/ui/button";
@@ -54,10 +55,95 @@ function PartnerPage() {
     requirements: "",
   });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const submit = (e: React.FormEvent) => {
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!form.name.trim()) {
+      newErrors.name = "Full Name is required";
+    } else if (form.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters long";
+    }
+
+    if (!form.email.trim()) {
+      newErrors.email = "Email is required";
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(form.email.trim())) {
+        newErrors.email = "Please enter a valid email address";
+      }
+    }
+
+    if (form.phone.trim()) {
+      const phoneRegex = /^[+]?[0-9\s\-()]{7,20}$/;
+      if (!phoneRegex.test(form.phone.trim())) {
+        newErrors.phone = "Please enter a valid phone number (at least 7 digits)";
+      }
+    }
+
+    if (!form.category) {
+      newErrors.category = "Please select a project category";
+    }
+
+    if (!form.requirements.trim()) {
+      newErrors.requirements = "Please outline your project requirements";
+    } else if (form.requirements.trim().length < 20) {
+      newErrors.requirements = "Please write a bit more description (minimum 20 characters)";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    if (!validateForm()) return;
+
+    setLoading(true);
+    setError(null);
+    setSent(false);
+
+    try {
+      const params = new URLSearchParams();
+      params.append("name", form.name);
+      params.append("company", form.company);
+      params.append("email", form.email);
+      params.append("phone", form.phone);
+      params.append("category", form.category);
+      params.append("requirements", form.requirements);
+
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbzJbjboyMVRTPsUGHeszbYC_uKi4tSG0loUeIGeE-oxYrs6kO1lfpPzoxIeFsO_nKKf/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: params.toString(),
+        }
+      );
+
+      setSent(true);
+      // Reset form on success
+      setForm({
+        name: "",
+        company: "",
+        email: "",
+        phone: "",
+        category: "",
+        requirements: "",
+      });
+      setErrors({});
+    } catch (err: any) {
+      console.error("Submission error:", err);
+      setError("Something went wrong. Please try again or contact us directly at info@dzinfotech.in.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -252,9 +338,13 @@ function PartnerPage() {
                         <FloatingField
                           label="Full Name"
                           value={form.name}
-                          onChange={(v) => setForm({ ...form, name: v })}
+                            onChange={(v) => {
+                              setForm({ ...form, name: v });
+                              if (errors.name) setErrors((prev) => ({ ...prev, name: "" }));
+                            }}
                           required
                           icon={User}
+                            error={errors.name}
                         />
                         <FloatingField
                           label="Company Name"
@@ -269,46 +359,72 @@ function PartnerPage() {
                           label="Work Email"
                           type="email"
                           value={form.email}
-                          onChange={(v) => setForm({ ...form, email: v })}
+                            onChange={(v) => {
+                              setForm({ ...form, email: v });
+                              if (errors.email) setErrors((prev) => ({ ...prev, email: "" }));
+                            }}
                           required
                           icon={Mail}
+                            error={errors.email}
                         />
                         <FloatingField
                           label="Phone Number"
                           value={form.phone}
-                          onChange={(v) => setForm({ ...form, phone: v })}
+                            onChange={(v) => {
+                              setForm({ ...form, phone: v });
+                              if (errors.phone) setErrors((prev) => ({ ...prev, phone: "" }));
+                            }}
                           icon={Phone}
+                            error={errors.phone}
                         />
                       </div>
 
                       <FloatingSelect
                         label="Project Category"
                         value={form.category}
-                        onChange={(v) => setForm({ ...form, category: v })}
+                          onChange={(v) => {
+                            setForm({ ...form, category: v });
+                            if (errors.category) setErrors((prev) => ({ ...prev, category: "" }));
+                          }}
                         options={CATEGORIES}
                         required
                         icon={Briefcase}
+                          error={errors.category}
                       />
 
                       <FloatingTextarea
                         label="Briefly outline your project requirements"
                         value={form.requirements}
-                        onChange={(v) => setForm({ ...form, requirements: v })}
+                          onChange={(v) => {
+                            setForm({ ...form, requirements: v });
+                            if (errors.requirements) setErrors((prev) => ({ ...prev, requirements: "" }));
+                          }}
                         required
                         icon={MessageSquare}
+                          error={errors.requirements}
                       />
                     </div>
 
                     <div className="mt-2 pt-2">
                       <Button
                         type="submit"
+                          disabled={loading}
                         variant="none"
                         size="none"
-                        className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-copper px-6 py-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-glow cursor-pointer shadow-md hover:shadow-lg active:scale-[0.99]"
+                          className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-copper px-6 py-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-glow cursor-pointer shadow-md hover:shadow-lg active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        <span>Send Proposal Request</span>
-                        <Send className="h-4 w-4" />
+                          <span>{loading ? "Submitting..." : "Send Proposal Request"}</span>
+                          {loading ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                          ) : (
+                            <Send className="h-4 w-4" />
+                          )}
                       </Button>
+                        {error && (
+                          <p className="text-sm text-red-500 font-medium mt-4 text-center">
+                            {error}
+                          </p>
+                        )}
                     </div>
                   </>
                 )}
@@ -329,6 +445,7 @@ function FloatingField({
   type = "text",
   required,
   icon: Icon,
+  error,
 }: {
   label: string;
   value: string;
@@ -336,6 +453,7 @@ function FloatingField({
   type?: string;
   required?: boolean;
   icon: React.ComponentType<{ className?: string }>;
+    error?: string;
 }) {
   const [focused, setFocused] = useState(false);
   const active = focused || value.length > 0;
@@ -344,17 +462,24 @@ function FloatingField({
     <div className="relative flex flex-col group">
       <div
         className={`flex items-center gap-3 border-b transition-all duration-300 px-0 py-2 bg-transparent ${
-          focused ? "border-copper" : "border-neutral-300 hover:border-neutral-400"
+          error
+            ? "border-red-500"
+            : focused
+              ? "border-copper"
+              : "border-neutral-300 hover:border-neutral-400"
         }`}
       >
         <Icon
-          className={`h-4 w-4 transition-colors duration-300 ${focused ? "text-copper" : "text-muted-foreground/60"}`}
+          className={`h-4 w-4 transition-colors duration-300 ${error ? "text-red-500" : focused ? "text-copper" : "text-muted-foreground/60"
+            }`}
         />
         <div className="relative grow">
           <label
             className={`absolute left-0 transition-all duration-300 pointer-events-none select-none text-xs ${
               active
-                ? "-top-2.5 text-[10px] text-copper font-semibold"
+              ? `-top-2.5 text-[10px] font-semibold ${error ? "text-red-500" : "text-copper"}`
+              : error
+                ? "top-1 text-red-500/70"
                 : "top-1 text-muted-foreground/70"
             }`}
           >
@@ -365,7 +490,6 @@ function FloatingField({
             unstyled
             type={type}
             value={value}
-            required={required}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
             onChange={(e) => onChange(e.target.value)}
@@ -374,6 +498,7 @@ function FloatingField({
           />
         </div>
       </div>
+      {error && <span className="text-[10px] text-red-500 mt-1 font-medium">{error}</span>}
     </div>
   );
 }
@@ -386,6 +511,7 @@ function FloatingSelect({
   options,
   required,
   icon: Icon,
+  error,
 }: {
   label: string;
   value: string;
@@ -393,6 +519,7 @@ function FloatingSelect({
   options: string[];
   required?: boolean;
   icon: React.ComponentType<{ className?: string }>;
+    error?: string;
 }) {
   const [focused, setFocused] = useState(false);
   const [open, setOpen] = useState(false);
@@ -420,18 +547,26 @@ function FloatingSelect({
           setFocused(true);
         }}
         className={`flex items-center gap-3 border-b transition-all duration-300 px-0 py-2 bg-transparent cursor-pointer ${
-          focused || open ? "border-copper" : "border-neutral-300 hover:border-neutral-400"
+          error
+            ? "border-red-500"
+            : focused || open
+              ? "border-copper"
+              : "border-neutral-300 hover:border-neutral-400"
         }`}
       >
         <Icon
           className={`h-4 w-4 transition-colors duration-300 ${
-            focused || open ? "text-copper" : "text-muted-foreground/60"
+            error ? "text-red-500" : focused || open ? "text-copper" : "text-muted-foreground/60"
           }`}
         />
         <div className="relative grow pr-6">
           <label
             className={`absolute left-0 transition-all duration-300 pointer-events-none select-none text-[10px] -top-2.5 font-semibold ${
-              focused || open || value ? "text-copper" : "text-muted-foreground/70"
+              error
+                ? "text-red-500"
+                : focused || open || value
+                  ? "text-copper"
+                  : "text-muted-foreground/70"
             }`}
           >
             {label}
@@ -490,6 +625,7 @@ function FloatingSelect({
           </div>
         </div>
       )}
+      {error && <span className="text-[10px] text-red-500 mt-1 font-medium">{error}</span>}
     </div>
   );
 }
@@ -502,6 +638,7 @@ function FloatingTextarea({
   required,
   icon: Icon,
   rows = 4,
+  error,
 }: {
   label: string;
   value: string;
@@ -509,6 +646,7 @@ function FloatingTextarea({
   required?: boolean;
   icon: React.ComponentType<{ className?: string }>;
   rows?: number;
+    error?: string;
 }) {
   const [focused, setFocused] = useState(false);
   const active = focused || value.length > 0;
@@ -517,17 +655,24 @@ function FloatingTextarea({
     <div className="relative flex flex-col group">
       <div
         className={`flex items-start gap-3 border-b transition-all duration-300 px-0 py-2 bg-transparent ${
-          focused ? "border-copper" : "border-neutral-300 hover:border-neutral-400"
+          error
+            ? "border-red-500"
+            : focused
+              ? "border-copper"
+              : "border-neutral-300 hover:border-neutral-400"
         }`}
       >
         <Icon
-          className={`h-4 w-4 mt-2 transition-colors duration-300 ${focused ? "text-copper" : "text-muted-foreground/60"}`}
+          className={`h-4 w-4 mt-2 transition-colors duration-300 ${error ? "text-red-500" : focused ? "text-copper" : "text-muted-foreground/60"
+            }`}
         />
         <div className="relative grow">
           <label
             className={`absolute left-0 transition-all duration-300 pointer-events-none select-none text-xs ${
               active
-                ? "-top-2.5 text-[10px] text-copper font-semibold"
+              ? `-top-2.5 text-[10px] font-semibold ${error ? "text-red-500" : "text-copper"}`
+              : error
+                ? "top-1 text-red-500/70"
                 : "top-1 text-muted-foreground/70"
             }`}
           >
@@ -542,10 +687,10 @@ function FloatingTextarea({
             onBlur={() => setFocused(false)}
             onChange={(e) => onChange(e.target.value)}
             className="w-full bg-transparent text-sm outline-none pt-2 text-foreground resize-none"
-            required={required}
           />
         </div>
       </div>
+      {error && <span className="text-[10px] text-red-500 mt-1 font-medium">{error}</span>}
     </div>
   );
 }
