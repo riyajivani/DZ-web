@@ -13,10 +13,10 @@ export default function HomeFinalCTA() {
             width={1920}
             height={640}
             loading="lazy"
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[15%_center] md:object-center"
           />
           {/* Soft overlay so text stays crisp across every area of the photo */}
-          <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-background/85 via-background/50 to-background/80" />
+          <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-background/95 via-background/60 to-background/90 md:bg-linear-to-r md:from-background/85 md:via-background/50 md:to-background/80" />
 
           <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-copper/15 blur-[120px]" />
           <div className="pointer-events-none absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-copper/10 blur-[140px]" />

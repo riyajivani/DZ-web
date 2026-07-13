@@ -1,4 +1,18 @@
 import { Search, Target, Palette, Code2, CheckCircle2, Rocket, HeartHandshake } from "lucide-react";
+import {
+  ReactLogo,
+  VueLogo,
+  NextLogo,
+  NodeLogo,
+  SpringLogo,
+  DotnetLogo,
+  AwsLogo,
+  AzureLogo,
+  DockerLogo,
+  PostgresLogo,
+  MysqlLogo,
+  MongodbLogo,
+} from "@/components/logos";
 
 // Import project images
 import projConstruction from "@/assets/project-construction.jpg";
@@ -112,142 +126,6 @@ export const PROCESS_STEPS = [
     icon: HeartHandshake,
   },
 ];
-
-export const ReactLogo = () => (
-  <svg
-    className="h-7 w-7 text-[#61DAFB] animate-spin"
-    style={{ animationDuration: "15s" }}
-    viewBox="-11.5 -10.2 23 20.4"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="0" cy="0" r="2.05" fill="currentColor" />
-    <g stroke="currentColor" strokeWidth="1">
-      <ellipse rx="11" ry="4.2" />
-      <ellipse rx="11" ry="4.2" transform="rotate(60)" />
-      <ellipse rx="11" ry="4.2" transform="rotate(120)" />
-    </g>
-  </svg>
-);
-
-export const VueLogo = () => (
-  <svg className="h-7 w-7" viewBox="0 0 256 221" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M204.8 0H256L128 220.8L0 0H51.2L128 132.5L204.8 0Z" fill="#41B883" />
-    <path d="M51.2 0L128 132.5L204.8 0H157.4L128 50.9L98.6 0H51.2Z" fill="#35495E" />
-  </svg>
-);
-
-export const NextLogo = () => (
-  <svg
-    className="h-7 w-7 text-neutral-900 dark:text-white"
-    viewBox="0 0 180 180"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="90" cy="90" r="90" fill="currentColor" />
-    <path d="M149.5 157.5L69.1 54H54v72h11.9V67.1l72.1 92.9c4.2-.7 8-1.6 11.5-2.5z" fill="white" />
-    <rect x="115" y="54" width="12" height="72" fill="white" />
-  </svg>
-);
-
-export const NodeLogo = () => (
-  <svg
-    className="h-7 w-7 text-[#339933]"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M12 1L2 6.8v11.4L12 23l10-5.8V6.8L12 1zm0 2.9l7.5 4.3v8.6L12 21.1l-7.5-4.3V8.2L12 3.9z" />
-  </svg>
-);
-
-export const SpringLogo = () => (
-  <svg
-    className="h-7 w-7 text-[#6DB33F]"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm3.8 15.6c-.6.6-1.5 1-2.4 1.1-.9.1-1.9-.1-2.7-.6l.7-.7c1.3.4 2.8-.2 3.4-1.4.3-.6.4-1.2.2-1.8l1.4-.4c.3.9.1 1.9-.6 2.7z" />
-  </svg>
-);
-
-export const DotnetLogo = () => (
-  <svg
-    className="h-7 w-7 text-[#512BD4]"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm4 15h-8v-2h2V9H8V7h8v2h-2v4h2v2z" />
-  </svg>
-);
-
-export const AwsLogo = () => (
-  <svg
-    className="h-7 w-7 text-[#FF9900]"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm1 14.5c0 .3-.2.5-.5.5h-1c-.3 0-.5-.2-.5-.5v-1c0-.3.2-.5.5-.5h1c.3 0 .5.2.5.5v1zm0-3c0 .3-.2.5-.5.5h-1c-.3 0-.5-.2-.5-.5V7c0-.3.2-.5.5-.5h1c.3 0 .5.2.5.5v4.5z" />
-  </svg>
-);
-
-export const AzureLogo = () => (
-  <svg
-    className="h-7 w-7 text-[#0089D6]"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm4 15h-8v-2h2V9H8V7h8v2h-2v4h2v2z" />
-  </svg>
-);
-
-export const DockerLogo = () => (
-  <svg
-    className="h-7 w-7 text-[#2496ED]"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M13.9 8.8h-2.2v2.1h2.2v-2.1zm-2.7 0H9v2.1h2.2v-2.1zm-2.7 0H6.3v2.1h2.2v-2.1zm8.1 0H14v2.1h2.2v-2.1zm-8.1-2.6H6.3v2.1h2.2v-2.1zm2.7 0H9v2.1h2.2v-2.1zm2.7 0H14v2.1h2.2v-2.1z" />
-  </svg>
-);
-
-export const PostgresLogo = () => (
-  <svg
-    className="h-7 w-7 text-[#336791]"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm3 13.5H9v-2h6v2z" />
-  </svg>
-);
-
-export const MysqlLogo = () => (
-  <svg
-    className="h-7 w-7 text-[#00758F]"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm4 11.5H8v-2h8v2z" />
-  </svg>
-);
-
-export const MongodbLogo = () => (
-  <svg
-    className="h-7 w-7 text-[#47A248]"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm1 14.5c0 .3-.2.5-.5.5h-1c-.3 0-.5-.2-.5-.5v-1c0-.3.2-.5.5-.5h1c.3 0 .5.2.5.5v1zm0-3c0 .3-.2.5-.5.5h-1c-.3 0-.5-.2-.5-.5v-5c0-.3.2-.5.5-.5h1c.3 0 .5.2.5.5v5z" />
-  </svg>
-);
 
 export const TECHS_ROW_1 = [
   { name: "React", logo: ReactLogo },

@@ -11,19 +11,32 @@ import avatarSneha from "@/assets/avatar-sneha.png";
 import avatarVikram from "@/assets/avatar-vikram.png";
 import avatarWorkspace from "@/assets/avatar-workspace.png";
 
+import {
+  AdobeLogo,
+  AwsLogo,
+  CiscoLogo,
+  GoogleCloudLogo,
+  HubSpotLogo,
+  IbmLogo,
+  MicrosoftLogo,
+  OracleLogo,
+  SalesforceLogo,
+  SapLogo,
+  ShopifyLogo,
+} from "@/components/logos";
+
 export const PARTNERS = [
-  "Microsoft",
-  "Google Cloud",
-  "AWS",
-  "Salesforce",
-  "Oracle",
-  "SAP",
-  "IBM",
-  "Cisco",
-  "Adobe",
-  "Shopify",
-  "HubSpot",
-  "Twilio",
+  { name: "Microsoft", logo: MicrosoftLogo },
+  { name: "Google Cloud", logo: GoogleCloudLogo },
+  { name: "AWS", logo: AwsLogo },
+  { name: "Salesforce", logo: SalesforceLogo },
+  { name: "Oracle", logo: OracleLogo },
+  { name: "SAP", logo: SapLogo },
+  { name: "IBM", logo: IbmLogo },
+  { name: "Cisco", logo: CiscoLogo },
+  { name: "Adobe", logo: AdobeLogo },
+  { name: "Shopify", logo: ShopifyLogo },
+  { name: "HubSpot", logo: HubSpotLogo },
 ];
 
 export const WHAT_WE_DO = [

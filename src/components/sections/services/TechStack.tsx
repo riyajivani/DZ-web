@@ -21,7 +21,7 @@ export default function ServicesTechStack() {
       <div className="flex flex-col gap-6 relative w-full overflow-hidden mt-16">
         {/* Row 1: Scrolls Left */}
         <div className="relative w-full overflow-hidden py-2">
-          <div className="flex animate-marquee whitespace-nowrap">
+          <div className="flex w-max animate-marquee whitespace-nowrap">
             {[...TECHS_ROW_1, ...TECHS_ROW_1, ...TECHS_ROW_1, ...TECHS_ROW_1].map((tech, i) => {
               const Logo = tech.logo;
               return (
@@ -39,7 +39,7 @@ export default function ServicesTechStack() {
 
         {/* Row 2: Scrolls Right */}
         <div className="relative w-full overflow-hidden py-2">
-          <div className="flex animate-marquee-reverse whitespace-nowrap">
+          <div className="flex w-max animate-marquee-reverse whitespace-nowrap">
             {[...TECHS_ROW_2, ...TECHS_ROW_2, ...TECHS_ROW_2, ...TECHS_ROW_2].map((tech, i) => {
               const Logo = tech.logo;
               return (

@@ -186,7 +186,13 @@
 }
 
 .animate-marquee {
-  animation: marquee 30s linear infinite;
+  animation: marquee 15s linear infinite;
+}
+
+@media (min-width: 768px) {
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
 }
 
 @keyframes marquee-reverse {
@@ -199,5 +205,11 @@
 }
 
 .animate-marquee-reverse {
-  animation: marquee-reverse 30s linear infinite;
+  animation: marquee-reverse 15s linear infinite;
+}
+
+@media (min-width: 768px) {
+  .animate-marquee-reverse {
+    animation: marquee-reverse 30s linear infinite;
+  }
 }

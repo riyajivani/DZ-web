@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
   Phone,
@@ -34,6 +34,81 @@ export default function PartnerContactForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const [isMobile, setIsMobile] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [direction, setDirection] = useState(0); // 1 for forward, -1 for backward
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const validateStep = (step: number) => {
+    const newErrors: Record<string, string> = {};
+
+    if (step === 1) {
+      if (!form.name.trim()) {
+        newErrors.name = "Full Name is required";
+      } else if (form.name.trim().length < 2) {
+        newErrors.name = "Name must be at least 2 characters long";
+      }
+    }
+
+    if (step === 3) {
+      if (!form.email.trim()) {
+        newErrors.email = "Email is required";
+      } else {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(form.email.trim())) {
+          newErrors.email = "Please enter a valid email address";
+        }
+      }
+    }
+
+    if (step === 4) {
+      if (form.phone.trim()) {
+        const phoneRegex = /^[+]?[0-9\s\-()]{7,20}$/;
+        if (!phoneRegex.test(form.phone.trim())) {
+          newErrors.phone = "Please enter a valid phone number (at least 7 digits)";
+        }
+      }
+    }
+
+    if (step === 5) {
+      if (!form.category) {
+        newErrors.category = "Please select a project category";
+      }
+    }
+
+    if (step === 6) {
+      if (!form.requirements.trim()) {
+        newErrors.requirements = "Please outline your project requirements";
+      } else if (form.requirements.trim().length < 20) {
+        newErrors.requirements = "Please write a bit more description (minimum 20 characters)";
+      }
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const nextStep = () => {
+    if (validateStep(currentStep)) {
+      setDirection(1);
+      setCurrentStep((prev) => Math.min(prev + 1, 6));
+    }
+  };
+
+  const prevStep = () => {
+    setDirection(-1);
+    setErrors({});
+    setCurrentStep((prev) => Math.max(prev - 1, 1));
+  };
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -76,7 +151,15 @@ export default function PartnerContactForm() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateForm()) return;
+    if (isMobile) {
+      if (currentStep < 6) {
+        nextStep();
+        return;
+      }
+      if (!validateStep(6)) return;
+    } else {
+      if (!validateForm()) return;
+    }
 
     setLoading(true);
     setError(null);
@@ -114,6 +197,9 @@ export default function PartnerContactForm() {
         requirements: "",
       });
       setErrors({});
+      if (isMobile) {
+        setCurrentStep(1);
+      }
     } catch (err) {
       console.error("Submission error:", err);
       setError(
@@ -148,7 +234,7 @@ export default function PartnerContactForm() {
             align="center"
           />
 
-          <div className="mt-16 bg-white/80 backdrop-blur-[3px] border border-white rounded-3xl p-8 md:p-12 shadow-xl grid gap-12 lg:grid-cols-5 items-stretch relative">
+          <div className="mt-16 bg-white/80 backdrop-blur-[3px] border border-white rounded-3xl p-5 sm:p-8 md:p-12 shadow-xl grid gap-12 lg:grid-cols-5 items-stretch relative">
             {/* Left Column: Direct Info & Steps */}
             <div className="lg:col-span-2 flex flex-col items-center lg:items-start justify-between py-2 relative z-10 border-b lg:border-b-0 lg:border-r pb-8 lg:pb-0 lg:pr-8 border-border/20">
               <div className="flex flex-col items-center lg:items-start w-full">
@@ -267,6 +353,218 @@ export default function PartnerContactForm() {
                     Thank you for reaching out. A solutions architect from our technical team has
                     received your request and will contact you within 24 hours.
                   </p>
+                </div>
+              ) : isMobile ? (
+                <div className="flex flex-col justify-between h-full min-h-[280px]">
+                  {/* Step Form Header: Title and Progress */}
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-end">
+                      <div>
+                        <h4 className="text-xl font-bold tracking-tight text-foreground font-display">
+                          Request Proposal
+                        </h4>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Step {currentStep} of 6:{" "}
+                          {
+                            [
+                              "Full Name",
+                              "Company Name",
+                              "Work Email",
+                              "Phone Number",
+                              "Project Category",
+                              "Project Requirements",
+                            ][currentStep - 1]
+                          }
+                        </p>
+                      </div>
+                      {/* Progress Dots */}
+                      <div className="flex items-center gap-1.5 pb-1">
+                        {Array.from({ length: 6 }).map((_, i) => (
+                          <div
+                            key={i}
+                            className={`h-1.5 rounded-full transition-all duration-300 ${
+                              i + 1 === currentStep
+                                ? "w-6 bg-copper"
+                                : i + 1 < currentStep
+                                  ? "w-1.5 bg-copper/40"
+                                  : "w-1.5 bg-neutral-200"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                    {/* Progress Bar */}
+                    <div className="h-1.5 w-full bg-neutral-100 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-copper rounded-full transition-all duration-300 ease-out"
+                        style={{ width: `${(currentStep / 6) * 100}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Active Step Field Container */}
+                  <div className="relative py-4 my-auto min-h-[110px] flex flex-col justify-center">
+                    <AnimatePresence initial={false} custom={direction} mode="wait">
+                      <motion.div
+                        key={currentStep}
+                        custom={direction}
+                        variants={{
+                          enter: (direction: number) => ({
+                            x: direction > 0 ? 50 : -50,
+                            opacity: 0,
+                          }),
+                          center: {
+                            x: 0,
+                            opacity: 1,
+                          },
+                          exit: (direction: number) => ({
+                            x: direction < 0 ? 50 : -50,
+                            opacity: 0,
+                          }),
+                        }}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
+                        className="w-full"
+                      >
+                        {currentStep === 1 && (
+                          <FloatingField
+                            label="Full Name"
+                            value={form.name}
+                            onChange={(v) => {
+                              setForm({ ...form, name: v });
+                              if (errors.name) setErrors((prev) => ({ ...prev, name: "" }));
+                            }}
+                            required
+                            icon={User}
+                            error={errors.name}
+                          />
+                        )}
+                        {currentStep === 2 && (
+                          <FloatingField
+                            label="Company Name"
+                            value={form.company}
+                            onChange={(v) => setForm({ ...form, company: v })}
+                            icon={Building}
+                          />
+                        )}
+                        {currentStep === 3 && (
+                          <FloatingField
+                            label="Work Email"
+                            type="email"
+                            value={form.email}
+                            onChange={(v) => {
+                              setForm({ ...form, email: v });
+                              if (errors.email) setErrors((prev) => ({ ...prev, email: "" }));
+                            }}
+                            required
+                            icon={Mail}
+                            error={errors.email}
+                          />
+                        )}
+                        {currentStep === 4 && (
+                          <FloatingField
+                            label="Phone Number"
+                            value={form.phone}
+                            onChange={(v) => {
+                              setForm({ ...form, phone: v });
+                              if (errors.phone) setErrors((prev) => ({ ...prev, phone: "" }));
+                            }}
+                            icon={Phone}
+                            error={errors.phone}
+                          />
+                        )}
+                        {currentStep === 5 && (
+                          <FloatingSelect
+                            label="Project Category"
+                            value={form.category}
+                            onChange={(v) => {
+                              setForm({ ...form, category: v });
+                              if (errors.category) setErrors((prev) => ({ ...prev, category: "" }));
+                            }}
+                            options={CATEGORIES}
+                            required
+                            icon={Briefcase}
+                            error={errors.category}
+                          />
+                        )}
+                        {currentStep === 6 && (
+                          <FloatingTextarea
+                            label="Briefly outline your project requirements"
+                            value={form.requirements}
+                            onChange={(v) => {
+                              setForm({ ...form, requirements: v });
+                              if (errors.requirements)
+                                setErrors((prev) => ({ ...prev, requirements: "" }));
+                            }}
+                            required
+                            icon={MessageSquare}
+                            error={errors.requirements}
+                          />
+                        )}
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Navigation Buttons */}
+                  <div className="flex flex-col gap-3 mt-6">
+                    {currentStep < 6 ? (
+                      <div className="flex gap-4">
+                        {currentStep > 1 && (
+                          <Button
+                            type="button"
+                            onClick={prevStep}
+                            variant="none"
+                            size="none"
+                            className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl border border-neutral-300 px-4 py-3 text-sm font-semibold text-neutral-700 transition-all duration-300 hover:bg-neutral-50 cursor-pointer shadow-xs active:scale-[0.99]"
+                          >
+                            Back
+                          </Button>
+                        )}
+                        <Button
+                          type="button"
+                          onClick={nextStep}
+                          variant="none"
+                          size="none"
+                          className="flex-2 inline-flex items-center justify-center gap-2 rounded-2xl bg-copper px-4 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-glow cursor-pointer shadow-md hover:shadow-lg active:scale-[0.99]"
+                        >
+                          Next
+                        </Button>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col gap-3">
+                        <Button
+                          type="submit"
+                          disabled={loading}
+                          variant="none"
+                          size="none"
+                          className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-copper px-4 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-copper-glow cursor-pointer shadow-md hover:shadow-lg active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          <span>{loading ? "Submitting..." : "Send Proposal Request"}</span>
+                          {loading ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                          ) : (
+                            <Send className="h-4 w-4" />
+                          )}
+                        </Button>
+                        {currentStep > 1 && (
+                          <Button
+                            type="button"
+                            onClick={prevStep}
+                            variant="none"
+                            size="none"
+                            className="w-full inline-flex items-center justify-center gap-2 rounded-2xl border border-neutral-300 px-4 py-3 text-sm font-semibold text-neutral-700 transition-all duration-300 hover:bg-neutral-50 cursor-pointer shadow-xs active:scale-[0.99]"
+                          >
+                            Back
+                          </Button>
+                        )}
+                      </div>
+                    )}
+                    {error && (
+                      <p className="text-sm text-red-500 font-medium mt-2 text-center">{error}</p>
+                    )}
+                  </div>
                 </div>
               ) : (
                 <>
@@ -472,14 +770,18 @@ function FloatingSelect({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    function handleClickOutside(event: Event) {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setOpen(false);
         setFocused(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
   }, []);
 
   const filteredOptions = options.filter((o) => o.toLowerCase().includes(search.toLowerCase()));
