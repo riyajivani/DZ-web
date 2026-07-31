@@ -38,10 +38,10 @@ function ServicesPage() {
       <ServicesList />
       <ServicesProcess />
       <ServicesTechStack />
-      <ServicesTestimonials
+      {/* <ServicesTestimonials
         activeReviewIdx={activeReviewIdx}
         setActiveReviewIdx={setActiveReviewIdx}
-      />
+      /> */}
       <ServicesFAQs expandedFaq={expandedFaq} setExpandedFaq={setExpandedFaq} />
       <ServicesLetsTalk />
     </PageShell>

@@ -1,4 +1,4 @@
-import { Code2, Smartphone, Cog, Brain } from "lucide-react";
+import { Code2, MessageSquare, Cog, Brain } from "lucide-react";
 import projConstruction from "@/assets/project-construction.jpg";
 import projFieldApp from "@/assets/project-fieldapp.jpg";
 import projLogistics from "@/assets/project-logistics.jpg";
@@ -46,9 +46,9 @@ export const WHAT_WE_DO = [
     desc: "Tailored enterprise solutions designed to solve specific industry bottlenecks and scale with your operations.",
   },
   {
-    icon: Smartphone,
-    title: "Mobile Apps",
-    desc: "Powerful, offline-first mobile tools that empower field and site operations across iOS and Android.",
+    icon: MessageSquare,
+    title: "WhatsApp API Integration",
+    desc: "Seamless communication and automated outreach channels built directly into your daily customer workflows.",
   },
   {
     icon: Cog,
@@ -142,8 +142,8 @@ export const REASONS = [
 
 export const STATS = [
   { value: "90%", label: "Client satisfaction" },
-  { value: "180+", label: "Project Successfully Done" },
-  { value: "10K+", label: "Overall Revenue Raised" },
+  { value: "10+", label: "Project Successfully Done" },
+  { value: "85%", label: "Repeat client rate" },
 ];
 
 export const REVIEWS = [

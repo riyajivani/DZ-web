@@ -34,7 +34,7 @@ export const WHY = [
 export const ROLES = [
   {
     title: "React Developer Intern",
-    location: "Remote / Bhavnagar",
+    location: "Remote",
     type: "Internship",
     desc: "Help build and scale our modern digital platforms using Next.js, React and advanced UI frameworks.",
     icon: Code2,
@@ -50,7 +50,7 @@ export const ROLES = [
   },
   {
     title: "Flutter Developer Intern",
-    location: "Remote / Bhavnagar",
+    location: "Remote",
     type: "Internship",
     desc: "Work on mobile-first operational tools and cross-platform applications for global industries.",
     icon: Smartphone,
@@ -66,7 +66,7 @@ export const ROLES = [
   },
   {
     title: "Sales Intern",
-    location: "Field / Remote",
+    location: "Field / rRemote",
     type: "Internship",
     desc: "Identify market opportunities and assist in strategic lead generation for DZ Infotech's product suite.",
     icon: TrendingUp,

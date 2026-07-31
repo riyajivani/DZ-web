@@ -33,12 +33,12 @@ function Home() {
   return (
     <PageShell>
       <HomeHero />
-      <HomeTrustedPartners />
+      {/* <HomeTrustedPartners /> */}
       <HomeWhatWeDo />
       <HomeVision />
       <HomeProjectsSlider />
       <HomeWhyChooseUs />
-      <HomeClientReviews />
+      {/* <HomeClientReviews /> */}
       <HomeFinalCTA />
     </PageShell>
   );

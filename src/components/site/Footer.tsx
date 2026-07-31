@@ -28,7 +28,7 @@ export function Footer() {
               AI-driven intelligence for real-world industries.
             </p>
             <div className="mt-8 flex gap-3 justify-center md:justify-start">
-              {[Linkedin, Twitter, Github].map((Icon, i) => (
+              {[Linkedin, Twitter].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"
