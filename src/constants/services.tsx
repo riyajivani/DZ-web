@@ -23,9 +23,9 @@ import projCloud from "@/assets/project-cloud.jpg";
 
 import customSoft1 from "@/assets/custom-soft1.png";
 import customSoft2 from "@/assets/custom-soft2.png";
-import AppDev1 from "@/assets/app-dev1.png";
-import AppDev2 from "@/assets/app-dev2.png";
-import AppDev3 from "@/assets/app-dev3.png";
+import wapp1 from "@/assets/wapp-service1.png";
+import wapp2 from "@/assets/wapp-service2.png";
+import wapp3 from "@/assets/wapp-service3.png";
 import Erp1 from "@/assets/erp1.png";
 import Erp2 from "@/assets/erp2.png";
 import AiService1 from "@/assets/ai-service1.png";
@@ -52,16 +52,16 @@ export const SERVICES = [
     images: [customSoft1, projCloud, customSoft2],
   },
   {
-    title: "Mobile App Development",
-    desc: "High-performance, offline-first mobile applications built for field operations and seamless user experiences on iOS and Android.",
+    title: "WhatsApp API Integration",
+    desc: "Seamlessly integrate the official WhatsApp Business API to automate customer communication, alerts, support, and business workflows at scale.",
     points: [
-      "Flutter & React Native",
-      "Offline Data Sync",
-      "GPS & Telemetry",
-      "User-Centric UI/UX",
-      "App Store Deployment",
+      "Official API Setup & Verification",
+      "Automated Alerts & Notifications",
+      "AI-Powered Chatbots & Flow Builder",
+      "Shared Multi-Agent Inbox",
+      "CRM & Database Integrations",
     ],
-    images: [AppDev1, AppDev3, AppDev2],
+    images: [wapp1, wapp2, wapp3],
   },
   {
     title: "Workflow Automation",
