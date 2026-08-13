@@ -15,21 +15,10 @@ import {
 } from "@/components/logos";
 
 // Import project images
-import projConstruction from "@/assets/project-construction.jpg";
-import projFieldApp from "@/assets/project-fieldapp.jpg";
-import projLogistics from "@/assets/project-logistics.jpg";
-import projAI from "@/assets/project-ai.jpg";
-import projCloud from "@/assets/project-cloud.jpg";
-
-import customSoft1 from "@/assets/custom-soft1.png";
-import customSoft2 from "@/assets/custom-soft2.png";
-import wapp1 from "@/assets/wapp-service1.png";
-import wapp2 from "@/assets/wapp-service2.png";
-import wapp3 from "@/assets/wapp-service3.png";
-import Erp1 from "@/assets/erp1.png";
-import Erp2 from "@/assets/erp2.png";
-import AiService1 from "@/assets/ai-service1.png";
-import AiService2 from "@/assets/ai-service2.png";
+import wapp1 from "@/assets/whatsapp_api.png";
+import customSoft1 from "@/assets/custom_soft_development.png";
+import AiService1 from "@/assets/ai_business.png";
+import wf1 from "@/assets/workflow_automation.png";
 
 // Import Client Avatars for Testimonials
 import avatarRajesh from "@/assets/avatar-rajesh.png";
@@ -41,51 +30,51 @@ import avatarVikram from "@/assets/avatar-vikram.png";
 export const SERVICES = [
   {
     title: "Custom Software Development",
-    desc: "We build tailored enterprise-grade software designed to solve specific business bottlenecks and scale with your growth.",
+    desc: "Build software around the way your business actually operates.",
     points: [
-      "Enterprise Architecture",
-      "Cloud-Native Solutions",
-      "Legacy Modernization",
-      "API Integration",
-      "Database Administration",
+      "Custom Web Applications",
+      "Custom Business Software",
+      "CRM & ERP Development",
+      "API & Third-Party Integrations",
+      "Cloud-Based Applications",
     ],
-    images: [customSoft1, projCloud, customSoft2],
+    images: [customSoft1],
   },
   {
     title: "WhatsApp API Integration",
-    desc: "Seamlessly integrate the official WhatsApp Business API to automate customer communication, alerts, support, and business workflows at scale.",
+    desc: "Turn WhatsApp into a powerful business communication and automation channel.",
     points: [
-      "Official API Setup & Verification",
+      "WhatsApp API Setup & Verification",
       "Automated Alerts & Notifications",
-      "AI-Powered Chatbots & Flow Builder",
-      "Shared Multi-Agent Inbox",
-      "CRM & Database Integrations",
+      "AI Chatbots & Flow Automation",
+      "Multi-Agent Shared Inbox",
+      "CRM, ERP & Database Integration",
     ],
-    images: [wapp1, wapp2, wapp3],
+    images: [wapp1],
   },
   {
     title: "Workflow Automation",
-    desc: "Digitize fragmented communication and manual processes to eliminate errors and improve operational transparency.",
+    desc: "Reduce repetitive work and connect your business processes.",
     points: [
-      "Process Mapping",
-      "Automated Reporting",
-      "Resource Optimization",
+      "Business Process Automatio",
+      "Automated Reports & Dashboards",
+      "Task & Approval Automation",
       "Real-time Notifications",
-      "Custom ERP Integrations",
+      "CRM & ERP Workflow Integration",
     ],
-    images: [Erp1, projConstruction, Erp2],
+    images: [wf1],
   },
   {
-    title: "AI & Data Intelligence",
-    desc: "Future-ready intelligence layers that provide predictive insights, helping you make data-driven decisions to protect your margins.",
+    title: "AI & Business Intelligence",
+    desc: "Turn your business data into actionable insights with AI..",
     points: [
-      "Predictive Analytics",
-      "Machine Learning Models",
-      "Data Visualization",
-      "Anomaly Detection",
-      "Business Intelligence Systems",
+      "AI-Powered Business Assistants",
+      "AI Chatbots & Customer Support",
+      "Business Analytics & Dashboards",
+      "AI-Powered Data Insights",
+      "Predictive Business Analyticss",
     ],
-    images: [AiService1, projAI, AiService2],
+    images: [AiService1],
   },
 ];
 

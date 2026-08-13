@@ -16,10 +16,10 @@ export default function ServicesList() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}
-                className="border-t border-border/60 py-16 grid gap-10 md:grid-cols-12 md:py-24"
+                className="border-t border-border/60 py-16 grid grid-cols-1 gap-10 md:grid-cols-12 md:items-center md:py-24 md:px-12"
               >
                 {/* Left Column: Title, Points, and Inquire button */}
-                <div className="md:col-span-4 flex flex-col justify-between">
+                <div className="md:col-span-6 flex flex-col">
                   <div>
                     <h3 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
                       {s.title}
@@ -37,7 +37,7 @@ export default function ServicesList() {
                     </ul>
                   </div>
 
-                  <div className="mt-8 md:mt-0 pt-6">
+                  <div className="mt-8 pt-6">
                     <Link
                       to="/partner"
                       className="inline-flex items-center gap-1 text-md font-bold text-copper hover:text-copper-glow transition-colors group"
@@ -49,25 +49,21 @@ export default function ServicesList() {
                 </div>
 
                 {/* Right Column: Paragraph and Mockup Images Row */}
-                <div className="md:col-span-8 flex flex-col justify-between">
+                <div className="md:col-span-6 flex flex-col justify-center">
                   <p className="text-base md:text-lg leading-relaxed text-muted-foreground max-w-3xl">
                     {s.desc}
                   </p>
 
-                  {/* Images Showcase Row (3 images side by side) */}
-                  <div className="mt-12 grid grid-cols-3 gap-3 md:gap-4">
+                  {/* Image Showcase (Single wide image) */}
+                  <div className="mt-12 overflow-hidden rounded-2xl border border-border/60 bg-muted">
                     {s.images.map((img, imgIdx) => (
-                      <div
+                      <img
                         key={imgIdx}
-                        className="overflow-hidden rounded-2xl border border-border/60 bg-muted aspect-3/4"
-                      >
-                        <img
-                          src={img}
-                          alt=""
-                          className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-                          loading="lazy"
-                        />
-                      </div>
+                        src={img}
+                        alt={s.title}
+                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                        loading="lazy"
+                      />
                     ))}
                   </div>
                 </div>
