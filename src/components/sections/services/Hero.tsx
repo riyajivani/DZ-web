@@ -35,18 +35,18 @@ export default function ServicesHero() {
             Delivering measurable results through thoughtful engineering.
           </p>
 
-          <div className="grid grid-cols-2 gap-y-8 gap-x-0 w-full md:flex md:items-center md:justify-between text-center">
-            <div className="flex-1 px-4 border-r border-border/60 md:border-r-0">
+          {/* <div className="grid grid-cols-2 gap-y-8 gap-x-0 w-full md:flex md:items-center md:justify-between text-center"> */}
+          {/* <div className="flex-1 px-4 border-r border-border/60 md:border-r-0">
               <div className="text-4xl font-extrabold text-copper tracking-tight md:text-5xl">
                 <AnimatedCounter value="10+" />
               </div>
               <div className="mt-2 text-xs text-muted-foreground uppercase tracking-wider">
                 Projects Delivered
               </div>
-            </div>
+            </div> */}
 
             {/* Vertical divider (desktop only) */}
-            <div className="hidden md:block h-10 w-px bg-border/60 shrink-0" />
+          {/* <div className="hidden md:block h-10 w-px bg-border/60 shrink-0" />
 
             <div className="flex-1 px-4">
               <div className="text-4xl font-extrabold text-copper tracking-tight md:text-5xl">
@@ -55,10 +55,10 @@ export default function ServicesHero() {
               <div className="mt-2 text-xs text-muted-foreground uppercase tracking-wider">
                 Industries
               </div>
-            </div>
+            </div> */}
 
             {/* Vertical divider (desktop only) */}
-            <div className="hidden md:block h-10 w-px bg-border/60 shrink-0" />
+          {/* <div className="hidden md:block h-10 w-px bg-border/60 shrink-0" />
 
             <div className="flex-1 px-4 border-r border-border/60 md:border-r-0">
               <div className="text-4xl font-extrabold text-copper tracking-tight md:text-5xl">
@@ -67,8 +67,8 @@ export default function ServicesHero() {
               <div className="mt-2 text-xs text-muted-foreground uppercase tracking-wider">
                 Client Satisfaction
               </div>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
         </div>
 
         {/* What We Build Intro Paragraph */}

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, Phone, MapPin, Linkedin, Twitter, Github } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Twitter, Github, Instagram } from "lucide-react";
 import dzSvg from "@/assets/dz.svg";
 import infotechSvg from "@/assets/infotech.svg";
 import footerPng from "@/assets/footer1.png";
@@ -28,7 +28,7 @@ export function Footer() {
               AI-driven intelligence for real-world industries.
             </p>
             <div className="mt-8 flex gap-3 justify-center md:justify-start">
-              {[Linkedin, Twitter].map((Icon, i) => (
+              {[Linkedin, Twitter, Instagram].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"

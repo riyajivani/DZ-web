@@ -112,7 +112,7 @@ export default function HomeWhyChooseUs() {
         </div>
 
         {/* Stats row */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
@@ -130,7 +130,7 @@ export default function HomeWhyChooseUs() {
               {i < STATS.length - 1 && <div className="hidden h-16 w-px bg-copper/20 md:block" />}
             </div>
           ))}
-        </motion.div>
+        </motion.div> */}
       </Container>
     </section>
   );

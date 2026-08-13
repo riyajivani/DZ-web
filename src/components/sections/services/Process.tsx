@@ -1,3 +1,165 @@
+// import { Container, Eyebrow } from "@/components/site";
+// import { PROCESS_STEPS, STEP_COLORS } from "@/constants/services";
+
+// export default function ServicesProcess() {
+//   const row1Steps = PROCESS_STEPS.slice(0, 4).map((step, idx) => ({ ...step, originalIdx: idx }));
+//   const row2Steps = PROCESS_STEPS.slice(4).map((step, idx) => ({ ...step, originalIdx: idx + 4 })).reverse();
+
+//   return (
+//     <section className="py-20 md:py-28 bg-surface overflow-hidden">
+//       <Container>
+//         <div className="mb-14 flex flex-col items-center gap-3 text-center md:mb-20">
+//           <Eyebrow>How We Work</Eyebrow>
+//           <h2 className="mt-2 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-5xl lg:text-6xl">
+//             Our Development <span className="text-copper font-bold">Process</span>
+//           </h2>
+//           <p className="mt-5 max-w-xl mx-auto text-base text-muted-foreground">
+//             A structured roadmap built to guarantee operational continuity, rigorous testing, and
+//             flawless delivery.
+//           </p>
+//         </div>
+//         {/* New Desktop Snake Chevron Timeline */}
+//         <div className="hidden lg:block relative py-16">
+
+//           <div className="flex flex-col gap-16 relative z-10">
+//             <div className="grid grid-cols-4 gap-6 relative">
+//               <div className="absolute left-[12.5%] right-[12.5%] top-1/2 h-[2px] bg-slate-700 dark:bg-slate-800 -translate-y-1/2 z-0 rounded-full" />
+//               <div className="absolute right-[12.5%] top-1/2 w-[2px] h-[calc(100%+4rem)] bg-slate-700 dark:bg-slate-800 -translate-x-1/2 z-0 rounded-full" />
+//               {row1Steps.map((step) => {
+//                 const colors = STEP_COLORS[step.originalIdx];
+//                 return (
+//                   <div
+//                     key={step.name}
+//                     className="relative transition-all duration-300 hover:-translate-y-1 cursor-default group drop-shadow-sm hover:drop-shadow-md h-full"
+//                   >
+//                     <div
+//                       className={`h-full p-[1px] ${colors.border}`}
+//                       style={{
+//                         clipPath: 'polygon(0% 0%, calc(100% - 20px) 0%, 100% 50%, calc(100% - 20px) 100%, 0% 100%, 20px 50%)',
+//                       }}
+//                     >
+//                       <div
+//                         className={`h-full p-6 pl-9 pr-6 ${colors.bg} ${colors.text}`}
+//                         style={{
+//                           clipPath: 'polygon(0% 0%, calc(100% - 20px) 0%, 100% 50%, calc(100% - 20px) 100%, 0% 100%, 20px 50%)',
+//                         }}
+//                       >
+//                         <div className="flex items-start justify-between mb-4">
+//                           <span className="text-sm font-bold tracking-wider opacity-60">
+//                             STEP 0{step.originalIdx + 1}
+//                           </span>
+//                           <div className={`p-2 rounded-full ${colors.iconBg} transition-transform duration-300 group-hover:scale-110`}>
+//                             <step.icon className={`h-5 w-5 ${colors.icon}`} />
+//                           </div>
+//                         </div>
+//                         <h3 className="text-lg font-bold tracking-tight mb-2">
+//                           {step.name}
+//                         </h3>
+//                         <p className="text-xs leading-relaxed opacity-85">
+//                           {step.desc}
+//                         </p>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 );
+//               })}
+//             </div>
+
+//             <div className="grid grid-cols-4 gap-6 relative">
+//               <div className="absolute left-[37.5%] right-[12.5%] top-1/2 h-[2px] bg-slate-700 dark:bg-slate-800 -translate-y-1/2 z-0 rounded-full" />
+//               <div />
+//               {row2Steps.map((step) => {
+//                 const colors = STEP_COLORS[step.originalIdx];
+//                 return (
+//                   <div
+//                     key={step.name}
+//                     className="relative transition-all duration-300 hover:-translate-y-1 cursor-default group drop-shadow-sm hover:drop-shadow-md h-full"
+//                   >
+//                     <div
+//                       className={`h-full p-[1px] ${colors.border}`}
+//                       style={{
+//                         clipPath: 'polygon(20px 0%, 100% 0%, calc(100% - 20px) 50%, 100% 100%, 20px 100%, 0% 50%)',
+//                       }}
+//                     >
+//                       <div
+//                         className={`h-full p-6 pl-6 pr-9 ${colors.bg} ${colors.text}`}
+//                         style={{
+//                           clipPath: 'polygon(20px 0%, 100% 0%, calc(100% - 20px) 50%, 100% 100%, 20px 100%, 0% 50%)',
+//                         }}
+//                       >
+//                         <div className="flex items-start justify-between mb-4">
+//                           <span className="text-sm  font-bold tracking-wider opacity-60">
+//                             STEP 0{step.originalIdx + 1}
+//                           </span>
+//                           <div className={`p-2 rounded-full ${colors.iconBg} transition-transform duration-300 group-hover:scale-110`}>
+//                             <step.icon className={`h-5 w-5 ${colors.icon}`} />
+//                           </div>
+//                         </div>
+//                         <h3 className="text-lg font-bold tracking-tight mb-2">
+//                           {step.name}
+//                         </h3>
+//                         <p className="text-xs leading-relaxed opacity-85">
+//                           {step.desc}
+//                         </p>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 );
+//               })}
+//             </div>
+//           </div>
+//         </div>
+
+//         <div className="lg:hidden block relative py-8 max-w-md mx-auto">
+//           <div className="absolute left-1/2 top-0 bottom-0 w-[4px] bg-slate-700 dark:bg-slate-800 -translate-x-1/2 z-0 rounded-full" />
+
+//           {/* Vertical Timeline */}
+//           <div className="flex flex-col gap-3 relative z-10">
+//             {PROCESS_STEPS.map((step, idx) => {
+//               const colors = STEP_COLORS[idx];
+//               return (
+//                 <div
+//                   key={step.name}
+//                   className="relative transition-all duration-300 hover:scale-[1.02] cursor-default group drop-shadow-sm hover:drop-shadow-md"
+//                 >
+//                   <div
+//                     className={`p-[1px] ${colors.border}`}
+//                     style={{
+//                       clipPath: 'polygon(0% 0%, 50% 12px, 100% 0%, 100% calc(100% - 12px), 50% 100%, 0% calc(100% - 12px))',
+//                     }}
+//                   >
+//                     <div
+//                       className={`p-6 pt-8 pb-8 px-8 ${colors.bg} ${colors.text}`}
+//                       style={{
+//                         clipPath: 'polygon(0% 0%, 50% 12px, 100% 0%, 100% calc(100% - 12px), 50% 100%, 0% calc(100% - 12px))',
+//                       }}
+//                     >
+//                       <div className="flex items-center justify-between mb-3 mt-2">
+//                         <span className="text-xs font-bold tracking-wider opacity-60">
+//                           STEP 0{idx + 1}
+//                         </span>
+//                         <div className={`p-2 rounded-full ${colors.iconBg} transition-transform duration-300 group-hover:scale-110`}>
+//                           <step.icon className={`h-5 w-5 ${colors.icon}`} />
+//                         </div>
+//                       </div>
+//                       <h3 className="text-base font-bold tracking-tight mb-2 text-center">
+//                         {step.name}
+//                       </h3>
+//                       <p className="text-xs leading-relaxed opacity-85 text-center max-w-[280px] mx-auto">
+//                         {step.desc}
+//                       </p>
+//                     </div>
+//                   </div>
+//                 </div>
+//               );
+//             })}
+//           </div>
+//         </div>
+//       </Container>
+//     </section>
+//   );
+// }
+
 import { Container, Eyebrow } from "@/components/site";
 import { PROCESS_STEPS } from "@/constants/services";
 
@@ -177,3 +339,4 @@ export default function ServicesProcess() {
     </section>
   );
 }
+
