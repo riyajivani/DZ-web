@@ -72,7 +72,7 @@ export const SERVICES = [
       "AI Chatbots & Customer Support",
       "Business Analytics & Dashboards",
       "AI-Powered Data Insights",
-      "Predictive Business Analyticss",
+      "Predictive Business Analytics",
     ],
     images: [AiService1],
   },
