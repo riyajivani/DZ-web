@@ -28,17 +28,31 @@ export function Footer() {
               AI-driven intelligence for real-world industries.
             </p>
             <div className="mt-8 flex gap-3 justify-center md:justify-start">
-              {[Linkedin, Twitter, Instagram].map((Icon, i) => (
+              {[
+                {
+                  Icon: Linkedin,
+                  href: "https://in.linkedin.com/company/dz-infotech",
+                  label: "LinkedIn",
+                },
+                {
+                  Icon: Instagram,
+                  href: "https://www.instagram.com/dz.infotech/",
+                  label: "Instagram",
+                },
+              ].map(({ Icon, href, label }) => (
                 <a
-                  key={i}
-                  href="#"
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-100 bg-white/60 text-neutral-500 transition-colors hover:border-blue-400 hover:text-blue-600 hover:bg-blue-50/30"
-                  aria-label="Social link"
+                  aria-label={label}
                 >
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
             </div>
+
           </div>
 
           <div className="md:col-span-2 text-center md:text-left">
@@ -132,6 +146,12 @@ export function Footer() {
             </a>
             <a href="#" className="hover:text-blue-600 transition-colors">
               Cookies
+            </a>
+            <a
+              href="https://www.designrush.com/agency/software-development"
+              className="text-neutral-600 hover:text-blue-600 transition-colors"
+            >
+              Listed on DesignRush
             </a>
           </div>
         </Container>

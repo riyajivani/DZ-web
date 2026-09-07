@@ -10,7 +10,7 @@ export default function AboutMissionVision() {
             {
               icon: Target,
               label: "Our Mission",
-              body: "To digitally empower construction and infrastructure businesses by providing tools that solve real operational and financial challenges.",
+              body: "To digitally empower modern businesses by providing tools that solve real operational and financial challenges.",
               badge: "Empowerment",
               isVision: false,
             },

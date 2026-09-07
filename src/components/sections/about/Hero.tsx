@@ -23,7 +23,7 @@ export default function AboutHero() {
         {/* Right Aligned Bracketed Intro Statement */}
         <div className="flex justify-end py-4 px-4 mb-10">
           <h2 className="max-w-3xl text-right text-lg font-medium tracking-tight text-muted-foreground md:text-xl leading-relaxed">
-            [ DZ Infotech is a Gujarat-based technology firm building digital systems that optimize
+            [ DZ Infotech is a technology firm building digital systems that optimize
             operations, enhance cost visibility, and empower better decision-making systems ]
           </h2>
         </div>

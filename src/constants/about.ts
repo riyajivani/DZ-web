@@ -8,39 +8,39 @@ import industryExpansionImg from "@/assets/industry-expansion.png";
 
 export const TIMELINE = [
   {
-    when: "April 2025",
+    when: "Milestone 01",
     title: "The Idea",
-    desc: "Concept conceived after identifying operational challenges faced by contractors on real construction projects.",
+    desc: "Concept conceived after identifying key operational and workflow inefficiencies faced by growing businesses.",
     bgImage: theIdeaImg,
   },
   {
-    when: "June – July 2025",
+    when: "Milestone 02",
     title: "Prototype Phase",
-    desc: "First working prototype developed, focusing on digital site execution and field-first reporting.",
+    desc: "First working prototypes developed, focusing on custom software architectures and automated reporting.",
     bgImage: prototypePhaseImg,
   },
   {
-    when: "September 2025",
+    when: "Milestone 03",
     title: "DZ Infotech Foundation",
     desc: "DZ Infotech officially registered as a technology firm in Bhavnagar, Gujarat.",
     bgImage: dzFoundationImg,
   },
   {
-    when: "Late 2025",
+    when: "Milestone 04",
     title: "MVP Launch",
-    desc: "First flagship platform launched with DPR, progress tracking and attendance modules.",
+    desc: "First suite of custom digital platforms and workflow automation modules launched for client operations.",
     bgImage: mvpLaunchImg,
   },
   {
-    when: "Early Adoption",
+    when: "Milestone 05",
     title: "Proof of Concept",
-    desc: "Solution successfully demonstrated to over 15 major contractors for live feedback.",
+    desc: "Custom solutions and automated software successfully deployed across early business partners for live feedback.",
     bgImage: proofOfConceptImg,
   },
   {
-    when: "Future Vision",
+    when: "Milestone 06",
     title: "Industry Expansion",
-    desc: "Expanding our digital intelligence platform to automate workflows across multiple heavy industries.",
+    desc: "Expanding our digital intelligence platform and AI-driven software development across diverse industries.",
     bgImage: industryExpansionImg,
   },
 ];
