@@ -138,15 +138,15 @@ export function Footer() {
         <Container className="flex flex-col items-center justify-between gap-4 text-xs text-neutral-600 md:flex-row font-medium">
           <p>© {new Date().getFullYear()} DZ Infotech Partnership Firm. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-blue-600 transition-colors">
+            <Link to="/privacy" className="hover:text-blue-600 transition-colors">
               Privacy
-            </a>
-            <a href="#" className="hover:text-blue-600 transition-colors">
+            </Link>
+            <Link to="/terms" className="hover:text-blue-600 transition-colors">
               Terms
-            </a>
-            <a href="#" className="hover:text-blue-600 transition-colors">
+            </Link>
+            <Link to="/cookies" className="hover:text-blue-600 transition-colors">
               Cookies
-            </a>
+            </Link>
             <a
               href="https://www.designrush.com/agency/software-development"
               className="text-neutral-600 hover:text-blue-600 transition-colors"
