@@ -11,7 +11,6 @@ import {
   Send,
   Loader2,
   CheckCircle2,
-  Sparkles,
   ShieldCheck,
   Check,
   Lock,
@@ -22,18 +21,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 const WEBSITE_TYPES = [
-  "Business Landing Page",
-  "E-Commerce Online Store",
-  "Portfolio & Personal Website",
-  "Corporate Company Website",
-  "Custom Web Application",
-  "Other / Custom Project",
+  "Single Page Business Landing Page (Static)",
+  "Multi-Page Business Static Website (1-3 Pages)",
+  "Portfolio & Personal Static Website",
+  "Company / Agency Profile (Static)",
+  "Other Custom Static Website",
 ];
-
-// Default Google Apps Script URL fallback (can be overridden via VITE_OFFER_SHEET_URL env variable or prop)
-const DEFAULT_SHEET_URL =
-  import.meta.env.VITE_OFFER_SHEET_URL ||
-  "https://script.google.com/macros/s/AKfycbzJbjboyMVRTPsUGHeszbYC_uKi4tSG0loUeIGeE-oxYrs6kO1lfpPzoxIeFsO_nKKf/exec";
 
 interface SpecialOfferFormProps {
   customSheetUrl?: string;
@@ -45,7 +38,7 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
     email: "",
     phone: "",
     businessName: "",
-    websiteType: "Business Landing Page",
+    websiteType: "Single Page Business Landing Page (Static)",
     requirements: "",
   });
 
@@ -104,8 +97,8 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
       params.append("phone", form.phone);
       params.append("businessName", form.businessName);
       params.append("websiteType", form.websiteType);
-      params.append("requirements", form.requirements || "N/A (₹499 Offer Enrollment)");
-      params.append("offer", "₹499 Custom Website Sale");
+      params.append("requirements", form.requirements || "N/A (₹499 Static Website Offer)");
+      params.append("offer", "₹499 Custom Static Website Sale");
 
       await fetch("https://script.google.com/macros/s/AKfycbzIV8P7-UFslQCk_byYszn6vrQ4uXK4Sf7bV4ccNf6ust-KSRE4nps-ZprOkr196-xReA/exec", {
         method: "POST",
@@ -122,7 +115,7 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
         email: "",
         phone: "",
         businessName: "",
-        websiteType: "Business Landing Page",
+        websiteType: "Single Page Business Landing Page (Static)",
         requirements: "",
       });
       setErrors({});
@@ -148,10 +141,10 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
             eyebrow="Enrollment Form"
             title={
               <>
-                Claim Your <span className="text-copper font-bold">₹499 Custom Website</span>
+                Claim Your <span className="text-copper font-bold">₹499 Custom Static Website</span>
               </>
             }
-            subtitle="Fill out the details below to lock in the special ₹499 offer rate. Our engineering leads will connect with you within 24 hours."
+            subtitle="Fill out the details below to lock in the special ₹499 offer rate for a high-performance static website. Our engineering leads will connect with you within 24 hours."
             align="center"
           />
 
@@ -163,22 +156,21 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                   Package Breakdown
                 </div>
                 <h3 className="mt-5 text-2xl font-bold tracking-tight font-display text-foreground">
-                  What You Get for ₹499
+                  Static Website Plan (₹499)
                 </h3>
                 <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
-                  Complete custom website solution built to modern tech standards without monthly design subscription lock-ins.
+                  Fast, lightweight, single or multi-page static website tailored for your business or personal portfolio.
                 </p>
 
                 <div className="mt-6 space-y-3.5">
                   {[
-                    "Custom 1-5 Page Responsive Website",
-                    "Mobile & Tablet Optimized",
-                    "SEO & Speed Optimization",
-                    "Interactive Contact / Lead Form",
-                    "Social Media & WhatsApp Integration",
-                    "Domain & Cloud Hosting Assistance",
-                    "30 Days Free Maintenance & Updates",
-                    "100% Source Code Ownership",
+                    "Custom Static Website",
+                    "Fully Responsive Mobile & Desktop Layout",
+                    "Lightning Fast Loading Speed",
+                    "SEO Optimized Meta Tags & Headers",
+                    "Contact Form & WhatsApp Integration",
+                    "Social Media Links & Business Info",
+                    "Domain Setup Assistance",
                   ].map((feature, i) => (
                     <div key={i} className="flex items-start gap-2.5">
                       <div className="h-5 w-5 rounded-full bg-copper/10 text-copper flex items-center justify-center shrink-0 mt-0.5">
@@ -196,7 +188,7 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                   <div>
                     <p className="text-xs font-bold text-foreground">Zero Risk Guarantee</p>
                     <p className="text-[11px] text-muted-foreground mt-0.5">
-                      Direct 1-on-1 consultation before any commitment. Clear deliverables timeline.
+                      Direct 1-on-1 consultation before starting. Quick delivery with zero hidden charges.
                     </p>
                   </div>
                 </div>
@@ -214,7 +206,7 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                     Enrollment Submitted!
                   </h4>
                   <p className="text-sm text-muted-foreground mt-3 max-w-md leading-relaxed">
-                    Thank you! Your spot for the ₹499 Custom Website offer has been reserved. One of our technical solution specialists will reach out via WhatsApp / Email within 24 hours.
+                    Thank you! Your spot for the ₹499 Custom Static Website offer has been reserved. One of our technical solution specialists will reach out via WhatsApp / Email within 24 hours.
                   </p>
                   <Button
                     type="button"
@@ -230,10 +222,10 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                   <div className="space-y-6">
                     <div>
                       <h4 className="text-xl font-bold tracking-tight text-foreground font-display">
-                        Enrollment Details
+                          Static Website Enrollment Details
                       </h4>
                       <p className="text-xs text-muted-foreground mt-1">
-                        Please fill in your contact and project details to claim the offer.
+                          Please fill in your contact and static site preferences to claim the offer.
                       </p>
                     </div>
 
@@ -284,7 +276,7 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                     </div>
 
                     <FloatingSelect
-                      label="Website Type"
+                        label="Static Website Type"
                       value={form.websiteType}
                       onChange={(v) => {
                         setForm({ ...form, websiteType: v });
@@ -297,7 +289,7 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                     />
 
                     <FloatingTextarea
-                      label="Tell us briefly about your business & website goals (Optional)"
+                        label="Tell us briefly about your business & static website goals (Optional)"
                       value={form.requirements}
                       onChange={(v) => setForm({ ...form, requirements: v })}
                       icon={MessageSquare}
@@ -312,7 +304,7 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                       size="none"
                       className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-copper hover:brightness-110 px-6 py-4 text-sm font-semibold text-white transition-all duration-300 shadow-md hover:shadow-lg active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                     >
-                      <span>{loading ? "Submitting Enrollment..." : "Claim Custom Website Offer for ₹499"}</span>
+                        <span>{loading ? "Submitting Enrollment..." : "Claim Static Website Offer for ₹499"}</span>
                       {loading ? (
                         <Loader2 className="h-4 w-4 animate-spin" />
                       ) : (

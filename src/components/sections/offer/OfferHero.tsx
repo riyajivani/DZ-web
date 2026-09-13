@@ -45,7 +45,7 @@ export default function OfferHero({ onEnrollClick }: OfferHeroProps) {
             className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight font-display text-foreground"
           >
             Get a Professional <br className="hidden sm:inline" />
-            <span className="text-copper">Custom Website for ₹499</span>
+            <span className="text-copper">Custom Static Website for ₹499</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -55,7 +55,7 @@ export default function OfferHero({ onEnrollClick }: OfferHeroProps) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-6 text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto"
           >
-            Empower your business with a stunning, high-converting website built by software professionals. Fast, mobile-optimized, and SEO-ready.
+            Empower your business with a stunning, high-converting static website built by software professionals. Fast, mobile-optimized, and SEO-ready.
           </motion.p>
 
           {/* Price Card & CTA */}
@@ -72,7 +72,7 @@ export default function OfferHero({ onEnrollClick }: OfferHeroProps) {
                   One-Time Fee
                 </span>
               </div>
-              <p className="text-xs text-muted-foreground mt-1">No hidden fees • Full ownership of source code</p>
+              <p className="text-xs text-muted-foreground mt-1">Static website package • Full ownership of source code</p>
             </div>
 
             <Button
@@ -95,7 +95,7 @@ export default function OfferHero({ onEnrollClick }: OfferHeroProps) {
             {[
               {
                 icon: Globe,
-                title: "Custom Modern Design",
+                title: "Custom Static Design",
                 desc: "Tailored to your brand, pixel-perfect on mobile & desktop.",
               },
               {
@@ -105,7 +105,7 @@ export default function OfferHero({ onEnrollClick }: OfferHeroProps) {
               },
               {
                 icon: Code,
-                title: "Lead Form & Analytics",
+                title: "Lead Form & WhatsApp",
                 desc: "Integrated Google Sheet form capture & contact workflow.",
               },
               {

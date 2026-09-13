@@ -26,17 +26,17 @@ export default function HomeOfferBanner() {
               </div>
 
               <h2 className="text-2xl sm:text-4xl font-bold font-display tracking-tight text-white">
-                Get a Custom Website for Only <span className="text-amber-400 font-black">₹499</span>
+                Get a Custom Static Website for Only <span className="text-amber-400 font-black">₹499</span>
               </h2>
 
               <p className="text-sm sm:text-base text-neutral-300 max-w-2xl leading-relaxed">
-                Take your business online with a fast, modern, mobile-optimized custom website designed by professionals. Complete with lead capture forms and SEO setup.
+                Take your business online with a fast, modern, mobile-optimized static website designed by professionals. Complete with lead capture forms and SEO setup.
               </p>
 
               <div className="pt-2 flex flex-wrap gap-y-2 gap-x-6 text-xs sm:text-sm text-neutral-200">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-amber-400" />
-                  <span>Responsive & Mobile Ready</span>
+                  <span>Responsive Static Design</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-amber-400" />
@@ -53,7 +53,7 @@ export default function HomeOfferBanner() {
             <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col items-center lg:items-end justify-center gap-4">
               <div className="text-center lg:text-right">
                 <div className="text-3xl font-extrabold text-white font-display">
-                  ₹499 <span className="text-xs font-normal text-amber-400">/ one-time</span>
+                  ₹499 <span className="text-xs font-normal text-amber-400">/ static website</span>
                 </div>
               </div>
 
