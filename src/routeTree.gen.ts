@@ -13,6 +13,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PartnerRouteImport } from './routes/partner'
+import { Route as OfferRouteImport } from './routes/offer'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
@@ -36,6 +37,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const PartnerRoute = PartnerRouteImport.update({
   id: '/partner',
   path: '/partner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OfferRoute = OfferRouteImport.update({
+  id: '/offer',
+  path: '/offer',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CookiesRoute = CookiesRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/cookies': typeof CookiesRoute
+  '/offer': typeof OfferRoute
   '/partner': typeof PartnerRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/cookies': typeof CookiesRoute
+  '/offer': typeof OfferRoute
   '/partner': typeof PartnerRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/cookies': typeof CookiesRoute
+  '/offer': typeof OfferRoute
   '/partner': typeof PartnerRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/cookies'
+    | '/offer'
     | '/partner'
     | '/privacy'
     | '/services'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/cookies'
+    | '/offer'
     | '/partner'
     | '/privacy'
     | '/services'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/cookies'
+    | '/offer'
     | '/partner'
     | '/privacy'
     | '/services'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CareersRoute: typeof CareersRoute
   CookiesRoute: typeof CookiesRoute
+  OfferRoute: typeof OfferRoute
   PartnerRoute: typeof PartnerRoute
   PrivacyRoute: typeof PrivacyRoute
   ServicesRoute: typeof ServicesRoute
@@ -162,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/partner'
       fullPath: '/partner'
       preLoaderRoute: typeof PartnerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/offer': {
+      id: '/offer'
+      path: '/offer'
+      fullPath: '/offer'
+      preLoaderRoute: typeof OfferRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cookies': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
   CookiesRoute: CookiesRoute,
+  OfferRoute: OfferRoute,
   PartnerRoute: PartnerRoute,
   PrivacyRoute: PrivacyRoute,
   ServicesRoute: ServicesRoute,

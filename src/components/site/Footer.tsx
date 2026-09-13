@@ -84,6 +84,14 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  to="/offer"
+                  className="text-amber-600 dark:text-amber-400 font-semibold hover:text-amber-500 transition-colors"
+                >
+                  ₹499 Website Offer
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/partner"
                   className="text-neutral-600 hover:text-blue-600 transition-colors"
                 >

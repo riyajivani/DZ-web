@@ -51,7 +51,14 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        {/* Action Buttons: Offer Highlight + Partner */}
+        <div className="hidden md:flex items-center gap-3">
+          <Link
+            to="/offer"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 px-4 py-2.5 text-sm font-bold text-white shadow-md hover:shadow-lg hover:brightness-110 transition-all duration-300 active:scale-98"
+          >
+            <span>₹499 Website Offer</span>
+          </Link>
           <PartnerButton />
         </div>
 
@@ -72,7 +79,7 @@ export function Navbar() {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl md:hidden"
           >
-            <Container className="flex flex-col gap-1 py-4">
+            <Container className="flex flex-col gap-2 py-4">
               {NAV.map((n) => (
                 <Link
                   key={n.to}
@@ -83,13 +90,22 @@ export function Navbar() {
                   {n.label}
                 </Link>
               ))}
-              <Link
-                to="/partner"
-                onClick={() => setOpen(false)}
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-copper px-4 py-3 text-sm font-medium text-white"
-              >
-                Partner with us <ArrowRight className="h-4 w-4" />
-              </Link>
+              <div className="flex flex-col gap-2 pt-2 border-t border-border/40">
+                <Link
+                  to="/offer"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 px-4 py-3 text-sm font-bold text-white shadow-md"
+                >
+                  <span>₹499 Website Offer</span>
+                </Link>
+                <Link
+                  to="/partner"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-copper px-4 py-3 text-sm font-medium text-white"
+                >
+                  Partner with us <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
             </Container>
           </motion.div>
         )}
