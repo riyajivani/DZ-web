@@ -53,12 +53,12 @@ export function Navbar() {
 
         {/* Action Buttons: Offer Highlight + Partner */}
         <div className="hidden md:flex items-center gap-3">
-          <Link
+          {/* <Link
             to="/offer"
             className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 px-4 py-2.5 text-sm font-bold text-white shadow-md hover:shadow-lg hover:brightness-110 transition-all duration-300 active:scale-98"
           >
             <span>₹499 Website Offer</span>
-          </Link>
+          </Link> */}
           <PartnerButton />
         </div>
 
@@ -91,13 +91,13 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="flex flex-col gap-2 pt-2 border-t border-border/40">
-                <Link
+                {/* <Link
                   to="/offer"
                   onClick={() => setOpen(false)}
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 px-4 py-3 text-sm font-bold text-white shadow-md"
                 >
                   <span>₹499 Website Offer</span>
-                </Link>
+                </Link> */}
                 <Link
                   to="/partner"
                   onClick={() => setOpen(false)}

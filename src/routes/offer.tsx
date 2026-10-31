@@ -1,9 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { PageShell } from "@/components/site";
-import OfferHero from "@/components/sections/offer/OfferHero";
-import SpecialOfferForm from "@/components/sections/offer/SpecialOfferForm";
+import { createFileRoute, Navigate } from "@tanstack/react-router";
+// import { PageShell } from "@/components/site";
+// import OfferHero from "@/components/sections/offer/OfferHero";
+// import SpecialOfferForm from "@/components/sections/offer/SpecialOfferForm";
 
 export const Route = createFileRoute("/offer")({
+  /*
   head: () => ({
     meta: [
       { title: "Special Offer: Custom Static Website for ₹499 — DZ Infotech" },
@@ -20,14 +21,19 @@ export const Route = createFileRoute("/offer")({
       },
     ],
   }),
+  */
   component: OfferPage,
 });
 
 function OfferPage() {
+  // Offer page code is commented out and hidden (redirects to home)
   return (
+    <Navigate to="/" replace />
+    /*
     <PageShell>
       <OfferHero />
       <SpecialOfferForm />
     </PageShell>
+    */
   );
 }

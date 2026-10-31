@@ -12,6 +12,8 @@ import {
   PostgresLogo,
   MysqlLogo,
   MongodbLogo,
+  HubSpotLogo,
+  SalesforceLogo,
 } from "@/components/logos";
 
 // Import project images
@@ -19,6 +21,7 @@ import wapp1 from "@/assets/whatsapp_api.png";
 import customSoft1 from "@/assets/custom_soft_development.png";
 import AiService1 from "@/assets/ai_business.png";
 import wf1 from "@/assets/workflow_automation.png";
+import hubspotMigrationImg from "@/assets/hubspot_migration.png";
 
 // Import Client Avatars for Testimonials
 import avatarRajesh from "@/assets/avatar-rajesh.png";
@@ -39,6 +42,17 @@ export const SERVICES = [
       "Cloud-Based Applications",
     ],
     images: [customSoft1],
+  },
+  {
+    title: "HubSpot Data Migration",
+    desc: "Migrate data seamlessly from HubSpot to any CRM, or from another CRM into HubSpot with zero data loss.",
+    points: [
+      "Bidirectional Migration (HubSpot ⇄ Salesforce, Zoho, Dynamics, Custom CRMs)",
+      "Automated Field Mapping & Schema Transformation",
+      "Contacts, Companies, Deals & Historical Activity Preservation",
+      "Data Cleansing, Deduplication & Validation",
+    ],
+    images: [hubspotMigrationImg],
   },
   {
     title: "WhatsApp API Integration",
@@ -120,12 +134,14 @@ export const TECHS_ROW_1 = [
   { name: "React", logo: ReactLogo },
   { name: "Vue.js", logo: VueLogo },
   { name: "Next.js", logo: NextLogo },
+  { name: "HubSpot", logo: HubSpotLogo },
   { name: "AWS", logo: AwsLogo },
   { name: "Azure", logo: AzureLogo },
   { name: "Docker", logo: DockerLogo },
 ];
 
 export const TECHS_ROW_2 = [
+  { name: "Salesforce", logo: SalesforceLogo },
   { name: "Spring Boot", logo: SpringLogo },
   { name: "Node.js", logo: NodeLogo },
   { name: ".NET Core", logo: DotnetLogo },
@@ -178,6 +194,11 @@ export const REVIEWS = [
 ];
 
 export const FAQs = [
+  {
+    question: "Can you migrate data both to and from HubSpot and other CRMs?",
+    answer:
+      "Yes. We support complete bidirectional data migrations — whether you are migrating from HubSpot to Salesforce, Zoho, Microsoft Dynamics, or custom databases, or migrating into HubSpot from another CRM. We ensure all custom fields, associations, pipeline stages, engagement history, and notes are preserved with zero data loss.",
+  },
   {
     question: "How long does custom software development take?",
     answer:

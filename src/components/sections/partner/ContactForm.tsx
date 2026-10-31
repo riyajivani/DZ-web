@@ -71,10 +71,16 @@ export default function PartnerContactForm() {
     }
 
     if (step === 4) {
-      if (form.phone.trim()) {
-        const phoneRegex = /^[+]?[0-9\s\-()]{7,20}$/;
-        if (!phoneRegex.test(form.phone.trim())) {
-          newErrors.phone = "Please enter a valid phone number (at least 7 digits)";
+      const trimmedPhone = form.phone.trim();
+      if (!trimmedPhone) {
+        newErrors.phone = "Phone number with country code is required";
+      } else if (!trimmedPhone.startsWith("+")) {
+        newErrors.phone = "Country code starting with '+' is compulsory (e.g. +91, +1)";
+      } else {
+        const digitsOnly = trimmedPhone.replace(/\D/g, "");
+        const phoneRegex = /^\+[1-9]\d{0,3}[\s\-()]?[0-9\s\-()]{6,14}$/;
+        if (!phoneRegex.test(trimmedPhone) || digitsOnly.length < 8 || digitsOnly.length > 15) {
+          newErrors.phone = "Please enter a valid phone number with country code (e.g. +91 98765 43210)";
         }
       }
     }
@@ -128,10 +134,16 @@ export default function PartnerContactForm() {
       }
     }
 
-    if (form.phone.trim()) {
-      const phoneRegex = /^[+]?[0-9\s\-()]{7,20}$/;
-      if (!phoneRegex.test(form.phone.trim())) {
-        newErrors.phone = "Please enter a valid phone number (at least 7 digits)";
+    const trimmedPhone = form.phone.trim();
+    if (!trimmedPhone) {
+      newErrors.phone = "Phone number with country code is required";
+    } else if (!trimmedPhone.startsWith("+")) {
+      newErrors.phone = "Country code starting with '+' is compulsory (e.g. +91, +1)";
+    } else {
+      const digitsOnly = trimmedPhone.replace(/\D/g, "");
+      const phoneRegex = /^\+[1-9]\d{0,3}[\s\-()]?[0-9\s\-()]{6,14}$/;
+      if (!phoneRegex.test(trimmedPhone) || digitsOnly.length < 8 || digitsOnly.length > 15) {
+        newErrors.phone = "Please enter a valid phone number with country code (e.g. +91 98765 43210)";
       }
     }
 
@@ -370,7 +382,7 @@ export default function PartnerContactForm() {
                               "Full Name",
                               "Company Name",
                               "Work Email",
-                              "Phone Number",
+                              "Phone Number (with Country Code)",
                               "Project Category",
                               "Project Requirements",
                             ][currentStep - 1]
@@ -465,12 +477,19 @@ export default function PartnerContactForm() {
                         )}
                         {currentStep === 4 && (
                           <FloatingField
-                            label="Phone Number"
+                            label="Phone Number (with Country Code)"
+                            placeholder="+91 98765 43210"
+                            helperText="Country code starting with '+' is compulsory (e.g. +91, +1)"
                             value={form.phone}
                             onChange={(v) => {
-                              setForm({ ...form, phone: v });
+                              let cleaned = v.replace(/[^0-9+\s\-()]/g, "");
+                              if (cleaned.includes("+")) {
+                                cleaned = "+" + cleaned.replace(/\+/g, "");
+                              }
+                              setForm({ ...form, phone: cleaned });
                               if (errors.phone) setErrors((prev) => ({ ...prev, phone: "" }));
                             }}
+                            required
                             icon={Phone}
                             error={errors.phone}
                           />
@@ -612,12 +631,19 @@ export default function PartnerContactForm() {
                         error={errors.email}
                       />
                       <FloatingField
-                        label="Phone Number"
+                        label="Phone Number (with Country Code)"
+                        placeholder="+91 98765 43210"
+                        helperText="Country code starting with '+' is compulsory (e.g. +91, +1)"
                         value={form.phone}
                         onChange={(v) => {
-                          setForm({ ...form, phone: v });
+                          let cleaned = v.replace(/[^0-9+\s\-()]/g, "");
+                          if (cleaned.includes("+")) {
+                            cleaned = "+" + cleaned.replace(/\+/g, "");
+                          }
+                          setForm({ ...form, phone: cleaned });
                           if (errors.phone) setErrors((prev) => ({ ...prev, phone: "" }));
                         }}
+                        required
                         icon={Phone}
                         error={errors.phone}
                       />
@@ -688,6 +714,8 @@ function FloatingField({
   required,
   icon: Icon,
   error,
+  placeholder,
+  helperText,
 }: {
   label: string;
   value: string;
@@ -696,6 +724,8 @@ function FloatingField({
   required?: boolean;
   icon: React.ComponentType<{ className?: string }>;
   error?: string;
+  placeholder?: string;
+  helperText?: string;
 }) {
   const [focused, setFocused] = useState(false);
   const active = focused || value.length > 0;
@@ -736,12 +766,18 @@ function FloatingField({
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
             onChange={(e) => onChange(e.target.value)}
-            className="w-full bg-transparent text-sm outline-none pt-2 text-foreground placeholder-transparent"
-            placeholder={label}
+            className={`w-full bg-transparent text-sm outline-none pt-2 text-foreground ${
+              focused && !value ? "placeholder:text-muted-foreground/40" : "placeholder-transparent"
+            }`}
+            placeholder={placeholder || label}
           />
         </div>
       </div>
-      {error && <span className="text-[10px] text-red-500 mt-1 font-medium">{error}</span>}
+      {error ? (
+        <span className="text-[10px] text-red-500 mt-1 font-medium">{error}</span>
+      ) : helperText && focused ? (
+        <span className="text-[10px] text-muted-foreground mt-1">{helperText}</span>
+      ) : null}
     </div>
   );
 }

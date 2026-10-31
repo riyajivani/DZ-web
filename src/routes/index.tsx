@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/site";
 import HomeHero from "@/components/sections/home/Hero";
-import HomeOfferBanner from "@/components/sections/home/HomeOfferBanner";
+// import HomeOfferBanner from "@/components/sections/home/HomeOfferBanner";
 import HomeTrustedPartners from "@/components/sections/home/TrustedPartners";
 import HomeWhatWeDo from "@/components/sections/home/WhatWeDo";
 import HomeVision from "@/components/sections/home/Vision";
@@ -34,7 +34,7 @@ function Home() {
   return (
     <PageShell>
       <HomeHero />
-      <HomeOfferBanner />
+      {/* <HomeOfferBanner /> */}
       {/* <HomeTrustedPartners /> */}
       <HomeWhatWeDo />
       <HomeVision />

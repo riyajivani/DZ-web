@@ -21,7 +21,7 @@ export default function HomeWhatWeDo() {
               <span className="text-copper font-bold">simple digital experiences.</span>
             </h2>
             <p className="mt-5 max-w-xl mx-auto text-base text-muted-foreground">
-              Four core capabilities designed to transform how your business operates, scales, and
+              Core digital capabilities designed to transform how your business operates, scales, and
               grows.
             </p>
           </div>
@@ -29,7 +29,7 @@ export default function HomeWhatWeDo() {
 
         {/* Service cards sitting on top */}
         <div className="relative z-10 -mt-28 md:-mt-36 px-4 md:px-8">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {WHAT_WE_DO.map((s, i) => (
               <motion.div
                 key={s.title}

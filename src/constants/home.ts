@@ -1,4 +1,4 @@
-import { Code2, MessageSquare, Cog, Brain } from "lucide-react";
+import { Code2, MessageSquare, Cog, Brain, ArrowLeftRight } from "lucide-react";
 import projConstruction from "@/assets/project-construction.jpg";
 import projFieldApp from "@/assets/project-fieldapp.jpg";
 import projLogistics from "@/assets/project-logistics.jpg";
@@ -44,6 +44,11 @@ export const WHAT_WE_DO = [
     icon: Code2,
     title: "Custom Software",
     desc: "Tailored enterprise solutions designed to solve specific industry bottlenecks and scale with your operations.",
+  },
+  {
+    icon: ArrowLeftRight,
+    title: "HubSpot Data Migration",
+    desc: "Seamless bidirectional migration between HubSpot and another CRM or database with zero data loss.",
   },
   {
     icon: MessageSquare,
