@@ -55,7 +55,8 @@ export default function OfferHero({ onEnrollClick }: OfferHeroProps) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-6 text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto"
           >
-            Empower your business with a stunning, high-converting static website built by software professionals. Fast, mobile-optimized, and SEO-ready.
+            Empower your business with a stunning, high-converting static website built by software
+            professionals. Fast, mobile-optimized, and SEO-ready.
           </motion.p>
 
           {/* Price Card & CTA */}
@@ -67,12 +68,16 @@ export default function OfferHero({ onEnrollClick }: OfferHeroProps) {
           >
             <div className="text-center sm:text-left">
               <div className="flex items-baseline gap-3 justify-center sm:justify-start">
-                <span className="text-4xl md:text-5xl font-black font-display text-foreground">₹499</span>
+                <span className="text-4xl md:text-5xl font-black font-display text-foreground">
+                  ₹499
+                </span>
                 <span className="text-xs uppercase font-bold tracking-wide text-amber-600 bg-amber-500/10 px-2.5 py-1 rounded-md">
                   One-Time Fee
                 </span>
               </div>
-              <p className="text-xs text-muted-foreground mt-1">Static website package • Full ownership of source code</p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Static website package • Full ownership of source code
+              </p>
             </div>
 
             <Button

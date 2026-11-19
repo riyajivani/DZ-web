@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as InternshipRouteImport } from './routes/internship'
 import { Route as OfferRouteImport } from './routes/offer'
 import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -37,6 +38,11 @@ const CareersRoute = CareersRouteImport.update({
 const CookiesRoute = CookiesRouteImport.update({
   id: '/cookies',
   path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InternshipRoute = InternshipRouteImport.update({
+  id: '/internship',
+  path: '/internship',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OfferRoute = OfferRouteImport.update({
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/cookies': typeof CookiesRoute
+  '/internship': typeof InternshipRoute
   '/offer': typeof OfferRoute
   '/partner': typeof PartnerRoute
   '/privacy': typeof PrivacyRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/cookies': typeof CookiesRoute
+  '/internship': typeof InternshipRoute
   '/offer': typeof OfferRoute
   '/partner': typeof PartnerRoute
   '/privacy': typeof PrivacyRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/cookies': typeof CookiesRoute
+  '/internship': typeof InternshipRoute
   '/offer': typeof OfferRoute
   '/partner': typeof PartnerRoute
   '/privacy': typeof PrivacyRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/cookies'
+    | '/internship'
     | '/offer'
     | '/partner'
     | '/privacy'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/cookies'
+    | '/internship'
     | '/offer'
     | '/partner'
     | '/privacy'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/cookies'
+    | '/internship'
     | '/offer'
     | '/partner'
     | '/privacy'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CareersRoute: typeof CareersRoute
   CookiesRoute: typeof CookiesRoute
+  InternshipRoute: typeof InternshipRoute
   OfferRoute: typeof OfferRoute
   PartnerRoute: typeof PartnerRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -175,6 +188,13 @@ declare module '@tanstack/react-router' {
       path: '/cookies'
       fullPath: '/cookies'
       preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/internship': {
+      id: '/internship'
+      path: '/internship'
+      fullPath: '/internship'
+      preLoaderRoute: typeof InternshipRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/offer': {
@@ -220,6 +240,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
   CookiesRoute: CookiesRoute,
+  InternshipRoute: InternshipRoute,
   OfferRoute: OfferRoute,
   PartnerRoute: PartnerRoute,
   PrivacyRoute: PrivacyRoute,

@@ -45,7 +45,7 @@ export default function ServicesHero() {
               </div>
             </div> */}
 
-            {/* Vertical divider (desktop only) */}
+          {/* Vertical divider (desktop only) */}
           {/* <div className="hidden md:block h-10 w-px bg-border/60 shrink-0" />
 
             <div className="flex-1 px-4">
@@ -57,7 +57,7 @@ export default function ServicesHero() {
               </div>
             </div> */}
 
-            {/* Vertical divider (desktop only) */}
+          {/* Vertical divider (desktop only) */}
           {/* <div className="hidden md:block h-10 w-px bg-border/60 shrink-0" />
 
             <div className="flex-1 px-4 border-r border-border/60 md:border-r-0">

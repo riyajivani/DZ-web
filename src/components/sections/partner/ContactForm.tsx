@@ -80,7 +80,8 @@ export default function PartnerContactForm() {
         const digitsOnly = trimmedPhone.replace(/\D/g, "");
         const phoneRegex = /^\+[1-9]\d{0,3}[\s\-()]?[0-9\s\-()]{6,14}$/;
         if (!phoneRegex.test(trimmedPhone) || digitsOnly.length < 8 || digitsOnly.length > 15) {
-          newErrors.phone = "Please enter a valid phone number with country code (e.g. +91 98765 43210)";
+          newErrors.phone =
+            "Please enter a valid phone number with country code (e.g. +91 98765 43210)";
         }
       }
     }
@@ -143,7 +144,8 @@ export default function PartnerContactForm() {
       const digitsOnly = trimmedPhone.replace(/\D/g, "");
       const phoneRegex = /^\+[1-9]\d{0,3}[\s\-()]?[0-9\s\-()]{6,14}$/;
       if (!phoneRegex.test(trimmedPhone) || digitsOnly.length < 8 || digitsOnly.length > 15) {
-        newErrors.phone = "Please enter a valid phone number with country code (e.g. +91 98765 43210)";
+        newErrors.phone =
+          "Please enter a valid phone number with country code (e.g. +91 98765 43210)";
       }
     }
 

@@ -9,6 +9,7 @@ import { PartnerButton } from "./PartnerButton";
 
 const NAV = [
   { label: "Services", to: "/services" },
+  { label: "Internship", to: "/internship" },
   { label: "Careers", to: "/careers" },
   { label: "About", to: "/about" },
 ] as const;

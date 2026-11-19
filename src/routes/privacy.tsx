@@ -1,5 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ShieldCheck, Mail, Phone, MapPin, ArrowRight, Lock, Eye, Database, UserCheck, RefreshCw } from "lucide-react";
+import {
+  ShieldCheck,
+  Mail,
+  Phone,
+  MapPin,
+  ArrowRight,
+  Lock,
+  Eye,
+  Database,
+  UserCheck,
+  RefreshCw,
+} from "lucide-react";
 import { PageShell, Container } from "@/components/site";
 
 export const Route = createFileRoute("/privacy")({
@@ -32,10 +43,21 @@ function PrivacyPage() {
       content: (
         <div className="space-y-3">
           <p>
-            DZ Infotech Partnership Firm (&quot;DZ Infotech&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) respects your privacy and is committed to protecting the personal data you share with us. This Privacy Policy explains how we collect, use, disclose, store, and safeguard your information when you visit our website (<code className="rounded bg-blue-50 px-1.5 py-0.5 text-xs text-blue-800">dzinfotech.in</code>) or engage with our custom software, web, mobile, cloud, automation, and AI consulting services.
+            DZ Infotech Partnership Firm (&quot;DZ Infotech&quot;, &quot;we&quot;, &quot;our&quot;,
+            or &quot;us&quot;) respects your privacy and is committed to protecting the personal
+            data you share with us. This Privacy Policy explains how we collect, use, disclose,
+            store, and safeguard your information when you visit our website (
+            <code className="rounded bg-blue-50 px-1.5 py-0.5 text-xs text-blue-800">
+              dzinfotech.in
+            </code>
+            ) or engage with our custom software, web, mobile, cloud, automation, and AI consulting
+            services.
           </p>
           <p>
-            By accessing or using our services, you acknowledge that you have read, understood, and agreed to the collection and use of your information as described in this policy. If you do not agree with any part of this policy, please refrain from using our digital services.
+            By accessing or using our services, you acknowledge that you have read, understood, and
+            agreed to the collection and use of your information as described in this policy. If you
+            do not agree with any part of this policy, please refrain from using our digital
+            services.
           </p>
         </div>
       ),
@@ -47,7 +69,8 @@ function PrivacyPage() {
       content: (
         <div className="space-y-4">
           <p>
-            We collect personal information directly from you when you interact with our website, submit project inquiries, or enter into commercial agreements with us.
+            We collect personal information directly from you when you interact with our website,
+            submit project inquiries, or enter into commercial agreements with us.
           </p>
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-xl border border-blue-100 bg-blue-50/40 p-4">
@@ -84,13 +107,31 @@ function PrivacyPage() {
       title: "3. How We Use Your Information",
       content: (
         <div className="space-y-3">
-          <p>We use the collected information for specific, legitimate business purposes, including:</p>
+          <p>
+            We use the collected information for specific, legitimate business purposes, including:
+          </p>
           <ul className="space-y-2 text-sm text-neutral-600 list-disc list-inside">
-            <li><strong className="text-neutral-800">Service Delivery:</strong> Providing custom software design, engineering, ERP/CRM implementations, and technical support.</li>
-            <li><strong className="text-neutral-800">Client Communication:</strong> Responding to inquiry forms, issuing project estimates, scheduling discovery calls, and providing updates.</li>
-            <li><strong className="text-neutral-800">Business Operations:</strong> Processing invoices, managing client partnerships, and complying with accounting standards.</li>
-            <li><strong className="text-neutral-800">Website Enhancement:</strong> Monitoring traffic patterns, debugging technical issues, and optimizing overall user experience.</li>
-            <li><strong className="text-neutral-800">Security & Compliance:</strong> Protecting against fraudulent activity, illegal access, and legal liability.</li>
+            <li>
+              <strong className="text-neutral-800">Service Delivery:</strong> Providing custom
+              software design, engineering, ERP/CRM implementations, and technical support.
+            </li>
+            <li>
+              <strong className="text-neutral-800">Client Communication:</strong> Responding to
+              inquiry forms, issuing project estimates, scheduling discovery calls, and providing
+              updates.
+            </li>
+            <li>
+              <strong className="text-neutral-800">Business Operations:</strong> Processing
+              invoices, managing client partnerships, and complying with accounting standards.
+            </li>
+            <li>
+              <strong className="text-neutral-800">Website Enhancement:</strong> Monitoring traffic
+              patterns, debugging technical issues, and optimizing overall user experience.
+            </li>
+            <li>
+              <strong className="text-neutral-800">Security & Compliance:</strong> Protecting
+              against fraudulent activity, illegal access, and legal liability.
+            </li>
           </ul>
         </div>
       ),
@@ -102,13 +143,26 @@ function PrivacyPage() {
       content: (
         <div className="space-y-3">
           <p>
-            DZ Infotech strictly respects your confidentiality. <strong className="text-neutral-800">We do not sell, rent, or trade your personal data to third-party marketers.</strong>
+            DZ Infotech strictly respects your confidentiality.{" "}
+            <strong className="text-neutral-800">
+              We do not sell, rent, or trade your personal data to third-party marketers.
+            </strong>
           </p>
           <p>We may share data under the following strictly limited circumstances:</p>
           <ul className="space-y-2 text-sm text-neutral-600 list-disc list-inside">
-            <li><strong className="text-neutral-800">Trusted Infrastructure Vendors:</strong> Secure web hosting, cloud infrastructure, domain hosts, and transactional email service providers operating under confidentiality agreements.</li>
-            <li><strong className="text-neutral-800">Legal Obligations:</strong> Compliance with valid court orders, law enforcement demands, or Indian regulatory mandates.</li>
-            <li><strong className="text-neutral-800">Business Protection:</strong> Enforcing our terms of service, defending legal claims, or investigating security breaches.</li>
+            <li>
+              <strong className="text-neutral-800">Trusted Infrastructure Vendors:</strong> Secure
+              web hosting, cloud infrastructure, domain hosts, and transactional email service
+              providers operating under confidentiality agreements.
+            </li>
+            <li>
+              <strong className="text-neutral-800">Legal Obligations:</strong> Compliance with valid
+              court orders, law enforcement demands, or Indian regulatory mandates.
+            </li>
+            <li>
+              <strong className="text-neutral-800">Business Protection:</strong> Enforcing our terms
+              of service, defending legal claims, or investigating security breaches.
+            </li>
           </ul>
         </div>
       ),
@@ -120,10 +174,14 @@ function PrivacyPage() {
       content: (
         <div className="space-y-3">
           <p>
-            We deploy multi-layered security measures—including SSL/TLS transport encryption, access controls, restricted server environments, and firewalls—to safeguard your data against unauthorized access, loss, or disclosure.
+            We deploy multi-layered security measures—including SSL/TLS transport encryption, access
+            controls, restricted server environments, and firewalls—to safeguard your data against
+            unauthorized access, loss, or disclosure.
           </p>
           <p>
-            We retain personal data only for as long as necessary to fulfill the purposes for which it was collected, or as required by applicable tax, legal, and operational regulations in India.
+            We retain personal data only for as long as necessary to fulfill the purposes for which
+            it was collected, or as required by applicable tax, legal, and operational regulations
+            in India.
           </p>
         </div>
       ),
@@ -134,23 +192,36 @@ function PrivacyPage() {
       title: "6. Your Rights & Choices",
       content: (
         <div className="space-y-3">
-          <p>Depending on your jurisdiction, you possess specific rights regarding your personal information:</p>
+          <p>
+            Depending on your jurisdiction, you possess specific rights regarding your personal
+            information:
+          </p>
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-lg border border-neutral-200 bg-white p-3 shadow-xs">
               <h5 className="font-semibold text-xs text-blue-900">Right to Access & Rectify</h5>
-              <p className="mt-1 text-xs text-neutral-600">Request a copy of the personal data we store about you or request corrections to inaccurate entries.</p>
+              <p className="mt-1 text-xs text-neutral-600">
+                Request a copy of the personal data we store about you or request corrections to
+                inaccurate entries.
+              </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-3 shadow-xs">
               <h5 className="font-semibold text-xs text-blue-900">Right to Erasure</h5>
-              <p className="mt-1 text-xs text-neutral-600">Request the deletion of your personal data where there is no legal requirement for its retention.</p>
+              <p className="mt-1 text-xs text-neutral-600">
+                Request the deletion of your personal data where there is no legal requirement for
+                its retention.
+              </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-3 shadow-xs">
               <h5 className="font-semibold text-xs text-blue-900">Opt-Out Rights</h5>
-              <p className="mt-1 text-xs text-neutral-600">Unsubscribe from direct promotional emails or communications at any time.</p>
+              <p className="mt-1 text-xs text-neutral-600">
+                Unsubscribe from direct promotional emails or communications at any time.
+              </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-3 shadow-xs">
               <h5 className="font-semibold text-xs text-blue-900">Cookie Preferences</h5>
-              <p className="mt-1 text-xs text-neutral-600">Manage or disable non-essential cookies directly via your web browser settings.</p>
+              <p className="mt-1 text-xs text-neutral-600">
+                Manage or disable non-essential cookies directly via your web browser settings.
+              </p>
             </div>
           </div>
         </div>
@@ -163,7 +234,10 @@ function PrivacyPage() {
       content: (
         <div className="space-y-3">
           <p>
-            We may update this Privacy Policy from time to time to reflect technological changes, regulatory compliance, or evolving business operations. The revised policy will be posted on this page with an updated &quot;Last Revised&quot; date. We encourage you to review this page periodically.
+            We may update this Privacy Policy from time to time to reflect technological changes,
+            regulatory compliance, or evolving business operations. The revised policy will be
+            posted on this page with an updated &quot;Last Revised&quot; date. We encourage you to
+            review this page periodically.
           </p>
         </div>
       ),
@@ -175,7 +249,7 @@ function PrivacyPage() {
       <div className="relative overflow-hidden bg-gradient-to-b from-blue-50/80 via-white to-neutral-50/50 pt-32 pb-24">
         {/* Glowing background highlights */}
         <div className="pointer-events-none absolute -top-40 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-400/10 blur-3xl" />
-        
+
         <Container className="relative z-10">
           {/* Header */}
           <div className="mx-auto max-w-3xl text-center">
@@ -186,7 +260,8 @@ function PrivacyPage() {
               Privacy Policy
             </h1>
             <p className="mt-4 text-sm md:text-base text-neutral-600 leading-relaxed">
-              We prioritize data transparency, confidentiality, and robust security for every interaction with DZ Infotech.
+              We prioritize data transparency, confidentiality, and robust security for every
+              interaction with DZ Infotech.
             </p>
             <div className="mt-4 text-xs font-medium text-neutral-500">
               Last Revised: <span className="text-neutral-800">{lastUpdated}</span>
@@ -216,7 +291,13 @@ function PrivacyPage() {
 
                 <div className="mt-6 rounded-xl border border-blue-100 bg-blue-50/50 p-4 text-xs text-neutral-600">
                   <p className="font-semibold text-blue-950">Questions about Privacy?</p>
-                  <p className="mt-1">Reach out directly to our team at <a href="mailto:info@dzinfotech.in" className="text-blue-600 hover:underline">info@dzinfotech.in</a>.</p>
+                  <p className="mt-1">
+                    Reach out directly to our team at{" "}
+                    <a href="mailto:info@dzinfotech.in" className="text-blue-600 hover:underline">
+                      info@dzinfotech.in
+                    </a>
+                    .
+                  </p>
                 </div>
               </div>
             </div>
@@ -248,7 +329,8 @@ function PrivacyPage() {
               <div className="rounded-2xl border border-blue-200 bg-gradient-to-r from-blue-900 to-sky-900 p-6 sm:p-8 text-white shadow-md">
                 <h3 className="text-lg font-bold">Contact Our Privacy Team</h3>
                 <p className="mt-2 text-xs sm:text-sm text-blue-100 leading-relaxed">
-                  If you have any questions, concerns, or requests regarding this Privacy Policy or your personal data handling at DZ Infotech Partnership Firm, please contact us:
+                  If you have any questions, concerns, or requests regarding this Privacy Policy or
+                  your personal data handling at DZ Infotech Partnership Firm, please contact us:
                 </p>
                 <div className="mt-6 grid gap-4 text-xs sm:text-sm sm:grid-cols-3">
                   <div className="flex items-center gap-2">
@@ -265,10 +347,16 @@ function PrivacyPage() {
                   </div>
                 </div>
                 <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap gap-4 text-xs">
-                  <Link to="/terms" className="text-sky-200 hover:text-white underline transition-colors">
+                  <Link
+                    to="/terms"
+                    className="text-sky-200 hover:text-white underline transition-colors"
+                  >
                     View Terms of Service
                   </Link>
-                  <Link to="/cookies" className="text-sky-200 hover:text-white underline transition-colors">
+                  <Link
+                    to="/cookies"
+                    className="text-sky-200 hover:text-white underline transition-colors"
+                  >
                     View Cookie Policy
                   </Link>
                 </div>

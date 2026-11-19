@@ -21,8 +21,8 @@ export default function HomeWhatWeDo() {
               <span className="text-copper font-bold">simple digital experiences.</span>
             </h2>
             <p className="mt-5 max-w-xl mx-auto text-base text-muted-foreground">
-              Core digital capabilities designed to transform how your business operates, scales, and
-              grows.
+              Core digital capabilities designed to transform how your business operates, scales,
+              and grows.
             </p>
           </div>
         </div>

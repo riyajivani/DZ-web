@@ -228,7 +228,7 @@ export const STEP_COLORS = [
     icon: "text-[#3B82F6]",
     iconBg: "bg-[#DBEAFE] dark:bg-[#1E3A8A]/50",
     hover: "hover:bg-[#DBEAFE] dark:hover:bg-[#334155]",
-    border: "bg-[#1E40AF]/30 dark:bg-[#93C5FD]/30"
+    border: "bg-[#1E40AF]/30 dark:bg-[#93C5FD]/30",
   },
   {
     bg: "bg-[#F5F3FF] dark:bg-[#1E293B]",
@@ -236,7 +236,7 @@ export const STEP_COLORS = [
     icon: "text-[#8B5CF6]",
     iconBg: "bg-[#EDE9FE] dark:bg-[#4C1D95]/50",
     hover: "hover:bg-[#EDE9FE] dark:hover:bg-[#334155]",
-    border: "bg-[#5B21B6]/30 dark:bg-[#C084FC]/30"
+    border: "bg-[#5B21B6]/30 dark:bg-[#C084FC]/30",
   },
   {
     bg: "bg-[#FDF2F8] dark:bg-[#1E293B]",
@@ -244,7 +244,7 @@ export const STEP_COLORS = [
     icon: "text-[#EC4899]",
     iconBg: "bg-[#FCE7F3] dark:bg-[#831843]/50",
     hover: "hover:bg-[#FCE7F3] dark:hover:bg-[#334155]",
-    border: "bg-[#9D174D]/30 dark:bg-[#F472B6]/30"
+    border: "bg-[#9D174D]/30 dark:bg-[#F472B6]/30",
   },
   {
     bg: "bg-[#FFFBEB] dark:bg-[#1E293B]",
@@ -252,7 +252,7 @@ export const STEP_COLORS = [
     icon: "text-[#F59E0B]",
     iconBg: "bg-[#FEF3C7] dark:bg-[#78350F]/50",
     hover: "hover:bg-[#FEF3C7] dark:hover:bg-[#334155]",
-    border: "bg-[#92400E]/30 dark:bg-[#FCD34D]/30"
+    border: "bg-[#92400E]/30 dark:bg-[#FCD34D]/30",
   },
   {
     bg: "bg-[#F0FDFA] dark:bg-[#1E293B]",
@@ -260,7 +260,7 @@ export const STEP_COLORS = [
     icon: "text-[#14B8A6]",
     iconBg: "bg-[#CCFBF1] dark:bg-[#115E59]/50",
     hover: "hover:bg-[#CCFBF1] dark:hover:bg-[#334155]",
-    border: "bg-[#115E59]/30 dark:bg-[#2DD4BF]/30"
+    border: "bg-[#115E59]/30 dark:bg-[#2DD4BF]/30",
   },
   {
     bg: "bg-[#F0FDF4] dark:bg-[#1E293B]",
@@ -268,7 +268,7 @@ export const STEP_COLORS = [
     icon: "text-[#22C55E]",
     iconBg: "bg-[#DCFCE7] dark:bg-[#064E3B]/50",
     hover: "hover:bg-[#DCFCE7] dark:hover:bg-[#334155]",
-    border: "bg-[#166534]/30 dark:bg-[#86EFAC]/30"
+    border: "bg-[#166534]/30 dark:bg-[#86EFAC]/30",
   },
   {
     bg: "bg-[#FFF5F5] dark:bg-[#1E293B]",
@@ -276,6 +276,6 @@ export const STEP_COLORS = [
     icon: "text-[#F56565]",
     iconBg: "bg-[#FED7D7] dark:bg-[#742A2A]/50",
     hover: "hover:bg-[#FED7D7] dark:hover:bg-[#334155]",
-    border: "bg-[#C53030]/30 dark:bg-[#FEB2B2]/30"
-  }
+    border: "bg-[#C53030]/30 dark:bg-[#FEB2B2]/30",
+  },
 ];

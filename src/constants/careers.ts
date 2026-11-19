@@ -33,9 +33,8 @@ export const WHY = [
 
 export const ROLES = [
   {
-    title: "React Developer Intern",
+    title: "React Developer",
     location: "Remote",
-    type: "Internship",
     desc: "Help build and scale our modern digital platforms using Next.js, React and advanced UI frameworks.",
     icon: Code2,
     bgClass: "bg-copper-light",
@@ -49,9 +48,8 @@ export const ROLES = [
     innerBgClass: "bg-copper-light",
   },
   {
-    title: "Flutter Developer Intern",
+    title: "Flutter Developer",
     location: "Remote",
-    type: "Internship",
     desc: "Work on mobile-first operational tools and cross-platform applications for global industries.",
     icon: Smartphone,
     bgClass: "bg-surface",
@@ -65,9 +63,8 @@ export const ROLES = [
     innerBgClass: "bg-surface",
   },
   {
-    title: "Sales Intern",
+    title: "Sales Executive",
     location: "Field / rRemote",
-    type: "Internship",
     desc: "Identify market opportunities and assist in strategic lead generation for DZ Infotech's product suite.",
     icon: TrendingUp,
     bgClass: "bg-neutral-900",
@@ -81,9 +78,8 @@ export const ROLES = [
     innerBgClass: "bg-neutral-900",
   },
   {
-    title: "Marketing / Digital Marketing Intern",
+    title: "Marketing/Digital Marketing Executive",
     location: "Remote",
-    type: "Internship",
     desc: "Create high-impact digital content and manage campaigns for a visionary technology brand.",
     icon: Sparkles,
     bgClass: "bg-gray-100",

@@ -26,11 +26,13 @@ export default function HomeOfferBanner() {
               </div>
 
               <h2 className="text-2xl sm:text-4xl font-bold font-display tracking-tight text-white">
-                Get a Custom Static Website for Only <span className="text-amber-400 font-black">₹499</span>
+                Get a Custom Static Website for Only{" "}
+                <span className="text-amber-400 font-black">₹499</span>
               </h2>
 
               <p className="text-sm sm:text-base text-neutral-300 max-w-2xl leading-relaxed">
-                Take your business online with a fast, modern, mobile-optimized static website designed by professionals. Complete with lead capture forms and SEO setup.
+                Take your business online with a fast, modern, mobile-optimized static website
+                designed by professionals. Complete with lead capture forms and SEO setup.
               </p>
 
               <div className="pt-2 flex flex-wrap gap-y-2 gap-x-6 text-xs sm:text-sm text-neutral-200">

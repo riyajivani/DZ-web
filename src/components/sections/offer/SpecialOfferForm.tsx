@@ -100,14 +100,17 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
       params.append("requirements", form.requirements || "N/A (₹499 Static Website Offer)");
       params.append("offer", "₹499 Custom Static Website Sale");
 
-      await fetch("https://script.google.com/macros/s/AKfycbzIV8P7-UFslQCk_byYszn6vrQ4uXK4Sf7bV4ccNf6ust-KSRE4nps-ZprOkr196-xReA/exec", {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbzIV8P7-UFslQCk_byYszn6vrQ4uXK4Sf7bV4ccNf6ust-KSRE4nps-ZprOkr196-xReA/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: params.toString(),
         },
-        body: params.toString(),
-      });
+      );
 
       setSent(true);
       setForm({
@@ -159,7 +162,8 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                   Static Website Plan (₹499)
                 </h3>
                 <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
-                  Fast, lightweight, single or multi-page static website tailored for your business or personal portfolio.
+                  Fast, lightweight, single or multi-page static website tailored for your business
+                  or personal portfolio.
                 </p>
 
                 <div className="mt-6 space-y-3.5">
@@ -188,7 +192,8 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                   <div>
                     <p className="text-xs font-bold text-foreground">Zero Risk Guarantee</p>
                     <p className="text-[11px] text-muted-foreground mt-0.5">
-                      Direct 1-on-1 consultation before starting. Quick delivery with zero hidden charges.
+                      Direct 1-on-1 consultation before starting. Quick delivery with zero hidden
+                      charges.
                     </p>
                   </div>
                 </div>
@@ -206,7 +211,9 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                     Enrollment Submitted!
                   </h4>
                   <p className="text-sm text-muted-foreground mt-3 max-w-md leading-relaxed">
-                    Thank you! Your spot for the ₹499 Custom Static Website offer has been reserved. One of our technical solution specialists will reach out via WhatsApp / Email within 24 hours.
+                    Thank you! Your spot for the ₹499 Custom Static Website offer has been reserved.
+                    One of our technical solution specialists will reach out via WhatsApp / Email
+                    within 24 hours.
                   </p>
                   <Button
                     type="button"
@@ -222,10 +229,10 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                   <div className="space-y-6">
                     <div>
                       <h4 className="text-xl font-bold tracking-tight text-foreground font-display">
-                          Static Website Enrollment Details
+                        Static Website Enrollment Details
                       </h4>
                       <p className="text-xs text-muted-foreground mt-1">
-                          Please fill in your contact and static site preferences to claim the offer.
+                        Please fill in your contact and static site preferences to claim the offer.
                       </p>
                     </div>
 
@@ -276,7 +283,7 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                     </div>
 
                     <FloatingSelect
-                        label="Static Website Type"
+                      label="Static Website Type"
                       value={form.websiteType}
                       onChange={(v) => {
                         setForm({ ...form, websiteType: v });
@@ -289,7 +296,7 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                     />
 
                     <FloatingTextarea
-                        label="Tell us briefly about your business & static website goals (Optional)"
+                      label="Tell us briefly about your business & static website goals (Optional)"
                       value={form.requirements}
                       onChange={(v) => setForm({ ...form, requirements: v })}
                       icon={MessageSquare}
@@ -304,7 +311,11 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                       size="none"
                       className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-copper hover:brightness-110 px-6 py-4 text-sm font-semibold text-white transition-all duration-300 shadow-md hover:shadow-lg active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                     >
-                        <span>{loading ? "Submitting Enrollment..." : "Claim Static Website Offer for ₹499"}</span>
+                      <span>
+                        {loading
+                          ? "Submitting Enrollment..."
+                          : "Claim Static Website Offer for ₹499"}
+                      </span>
                       {loading ? (
                         <Loader2 className="h-4 w-4 animate-spin" />
                       ) : (
@@ -317,7 +328,8 @@ export default function SpecialOfferForm({ customSheetUrl }: SpecialOfferFormPro
                     )}
 
                     <p className="text-[11px] text-muted-foreground text-center mt-3 flex items-center justify-center gap-1">
-                      <Lock className="h-3 w-3 text-muted-foreground/70" /> Your information is confidential and will never be shared with third parties.
+                      <Lock className="h-3 w-3 text-muted-foreground/70" /> Your information is
+                      confidential and will never be shared with third parties.
                     </p>
                   </div>
                 </>

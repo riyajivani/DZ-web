@@ -52,7 +52,6 @@ export function Footer() {
                 </a>
               ))}
             </div>
-
           </div>
 
           <div className="md:col-span-2 text-center md:text-left">
@@ -80,6 +79,14 @@ export function Footer() {
                   className="text-neutral-600 hover:text-blue-600 transition-colors"
                 >
                   Careers
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/internship"
+                  className="text-neutral-600 hover:text-blue-600 transition-colors"
+                >
+                  Internship
                 </Link>
               </li>
               {/* <li>

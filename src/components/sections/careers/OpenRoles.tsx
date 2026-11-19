@@ -62,11 +62,6 @@ export default function CareersOpenRoles({ setFormPosition }: OpenRolesProps) {
                     >
                       <Icon className="h-5 w-5" />
                     </div>
-                    <span
-                      className={`rounded-full border px-3 py-0.5 text-2xs font-bold tracking-wider uppercase ${r.badgeClass}`}
-                    >
-                      {r.type}
-                    </span>
                   </div>
 
                   <h3
