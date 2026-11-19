@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import careerFormBg from "@/assets/career-form.png";
-import { ACADEMIC_YEARS } from "@/constants/internship";
+import { ACADEMIC_YEARS, INTERNSHIP_BATCHES } from "@/constants/internship";
 
 const GOOGLE_SHEET_INTERNSHIP_URL =
   "https://script.google.com/macros/s/AKfycbxQSWzi8itH0JplB94EkTjj-UKgyXyThEpeizybfJDdzPygu82-Zd69_w7zG6P6mZ3pQw/exec";
@@ -31,6 +31,7 @@ export interface InternshipFormState {
   phone: string;
   college: string;
   year: string;
+  batch: string;
   portfolio: string;
   message: string;
   acknowledged: boolean;
@@ -43,6 +44,7 @@ export default function InternshipApplicationForm() {
     phone: "",
     college: "",
     year: "",
+    batch: "",
     portfolio: "",
     message: "",
     acknowledged: false,
@@ -92,6 +94,10 @@ export default function InternshipApplicationForm() {
       errs.year = "Please select your academic year / status";
     }
 
+    if (!form.batch) {
+      errs.batch = "Please select your preferred internship batch (3 or 6 months)";
+    }
+
     if (form.portfolio.trim()) {
       if (!/^https?:\/\/[^\s$.?#].[^\s]*$/i.test(form.portfolio.trim())) {
         errs.portfolio = "Please enter a valid URL (starting with http:// or https://)";
@@ -129,6 +135,8 @@ export default function InternshipApplicationForm() {
       params.append("phone", form.phone);
       params.append("college", form.college);
       params.append("year", form.year);
+      params.append("batch", form.batch);
+      params.append("duration", form.batch);
       params.append("portfolio", form.portfolio);
       params.append("message", form.message);
       params.append("acknowledged", form.acknowledged ? "Yes" : "No");
@@ -150,6 +158,7 @@ export default function InternshipApplicationForm() {
         phone: "",
         college: "",
         year: "",
+        batch: "",
         portfolio: "",
         message: "",
         acknowledged: false,
@@ -182,10 +191,10 @@ export default function InternshipApplicationForm() {
             title={
               <>
                 Apply for the <br />
-                <span className="text-copper font-bold">3-Month Internship</span>
+                <span className="text-copper font-bold">Internship Program</span>
               </>
             }
-            subtitle="Submit your application below. Our engineering team reviews each submission and schedules an introductory discussion."
+            subtitle="Submit your application below for our 3-month or 6-month batch. Our engineering team reviews each submission and schedules an introductory discussion."
             align="center"
           />
 
@@ -250,7 +259,7 @@ export default function InternshipApplicationForm() {
                 <div className="mt-8 p-4 rounded-2xl bg-surface border border-border/60 w-full text-xs text-muted-foreground space-y-2">
                   <div className="flex items-center gap-2 font-semibold text-foreground">
                     <CheckCircle2 className="h-4 w-4 text-copper shrink-0" />
-                    <span>3 Months Comprehensive Training</span>
+                    <span>3 Months & 6 Months Flexible Batches</span>
                   </div>
                   <div className="flex items-center gap-2 font-semibold text-foreground">
                     <CheckCircle2 className="h-4 w-4 text-copper shrink-0" />
@@ -345,7 +354,7 @@ export default function InternshipApplicationForm() {
                   />
                 </div>
 
-                {/* Year & Portfolio URL */}
+                {/* Year & Batch / Duration */}
                 <div className="grid gap-6 md:grid-cols-2">
                   <FloatingSelect
                     label="Academic Year / Degree Status"
@@ -361,17 +370,32 @@ export default function InternshipApplicationForm() {
                     error={errors.year}
                   />
 
-                  <FloatingField
-                    label="Portfolio / GitHub / LinkedIn URL (Optional)"
-                    value={form.portfolio}
+                  <FloatingSelect
+                    label="Internship Batch / Duration"
+                    placeholder="Select batch (3 or 6 months)"
+                    value={form.batch}
                     onChange={(v) => {
-                      setForm({ ...form, portfolio: v });
-                      if (errors.portfolio) setErrors((prev) => ({ ...prev, portfolio: "" }));
+                      setForm({ ...form, batch: v });
+                      if (errors.batch) setErrors((prev) => ({ ...prev, batch: "" }));
                     }}
-                    icon={LinkIcon}
-                    error={errors.portfolio}
+                    options={INTERNSHIP_BATCHES as unknown as string[]}
+                    required
+                    icon={Calendar}
+                    error={errors.batch}
                   />
                 </div>
+
+                {/* Portfolio URL */}
+                <FloatingField
+                  label="Portfolio / GitHub / LinkedIn URL (Optional)"
+                  value={form.portfolio}
+                  onChange={(v) => {
+                    setForm({ ...form, portfolio: v });
+                    if (errors.portfolio) setErrors((prev) => ({ ...prev, portfolio: "" }));
+                  }}
+                  icon={LinkIcon}
+                  error={errors.portfolio}
+                />
 
                 {/* Motivation / Learning Goals */}
                 <FloatingTextarea
@@ -406,10 +430,10 @@ export default function InternshipApplicationForm() {
                         <span className="text-red-500">*</span>
                       </span>
                       <p className="text-muted-foreground leading-relaxed text-2xs">
-                        I understand that this 3-month industrial internship includes structured
-                        interactive sessions, an individual live project, demo group projects, and
-                        an official certificate of completion. As an intensive training initiative,
-                        a student enrollment fee applies upon selection.
+                        I understand that this industrial internship (3-month or 6-month batch)
+                        includes structured interactive sessions, an individual live project, demo
+                        group projects, and an official certificate of completion. As an intensive
+                        training initiative, a student enrollment fee applies upon selection.
                       </p>
                     </div>
                   </label>

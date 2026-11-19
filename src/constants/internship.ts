@@ -11,21 +11,24 @@ import {
   Sparkles,
   ShieldCheck,
   Compass,
+  Rocket,
 } from "lucide-react";
 
 export const INTERNSHIP_STATS = [
-  { value: "3 Months", label: "Program Duration" },
+  { value: "3 & 6 Mos", label: "Program Batches" },
   { value: "Live & Demo", label: "Dual Project Focus" },
   { value: "Interactive", label: "Mentorship Sessions" },
   { value: "Verified", label: "Certificate of Completion" },
 ];
 
+export const INTERNSHIP_BATCHES = ["3 Months Internship", "6 Months Internship"] as const;
+
 export const INTERNSHIP_PILLARS = [
   {
     icon: Calendar,
-    title: "3 Months Immersive Duration",
-    desc: "A rigorous 12-week structured curriculum taking you from foundational engineering practices to end-to-end production-level execution.",
-    badge: "12 Weeks",
+    title: "3 & 6 Months Flexible Batches",
+    desc: "Choose between our fast-track 3-month intensive accelerator or the 6-month in-depth industrial immersion program.",
+    badge: "Flexible Durations",
   },
   {
     icon: Video,
@@ -48,7 +51,7 @@ export const INTERNSHIP_PILLARS = [
   {
     icon: Award,
     title: "Certificate of Completion",
-    desc: "Earn an official, verified certificate from DZ Infotech showcasing your project accomplishments, performance, and industrial competencies.",
+    desc: "Earn an official, verified certificate from DZ Infotech showcasing your completed tenure (3 or 6 months), deliverables, and competencies.",
     badge: "Official Credential",
   },
   {
@@ -72,6 +75,7 @@ export const CURRICULUM_PHASES = [
       "Requirements breakdown, wireframing & project planning",
     ],
     icon: BookOpen,
+    batchBadge: "All Batches",
   },
   {
     phase: "Month 02",
@@ -85,19 +89,35 @@ export const CURRICULUM_PHASES = [
       "Debugging, error handling, performance tuning & deployment readiness",
     ],
     icon: Briefcase,
+    batchBadge: "All Batches",
   },
   {
     phase: "Month 03",
     tag: "Weeks 9 - 12",
-    title: "Demo Group Sprints, Review & Certification",
-    desc: "Collaborate in team-based demo sprints, present your completed individual project, and receive your verified completion credentials.",
+    title: "Demo Group Sprints & 3-Month Graduation",
+    desc: "Collaborate in team-based demo sprints, present your completed individual project, and receive your 3-month completion credentials.",
     highlights: [
       "Demo group project sprints simulating modern tech team environments",
       "Collaborative feature merges, agile standups & peer reviews",
       "Final project demonstrations, technical evaluations & portfolio preparation",
-      "Award of the official DZ Infotech Certificate of Completion",
+      "Award of the official DZ Infotech Certificate of Completion (3-Month Batch)",
     ],
     icon: Award,
+    batchBadge: "3-Month Milestone",
+  },
+  {
+    phase: "Months 04 - 06",
+    tag: "Weeks 13 - 24",
+    title: "Advanced Track & Extended Production (6-Month Batch)",
+    desc: "An extended deep-dive for 6-month interns covering enterprise production deployments, scalability, advanced architecture, and leadership.",
+    highlights: [
+      "Large-scale live project extensions & complex module development",
+      "System optimization, CI/CD pipeline understanding & testing suites",
+      "Senior mentor pair-programming & advanced design patterns",
+      "Comprehensive 6-Month Industrial Experience Certificate & recommendation",
+    ],
+    icon: Rocket,
+    batchBadge: "6-Month Advanced Batch",
   },
 ];
 
@@ -136,9 +156,14 @@ export const ACADEMIC_YEARS = [
 
 export const INTERNSHIP_FAQS = [
   {
-    question: "What is the duration and format of the internship?",
+    question: "What batches and durations are available for this internship?",
     answer:
-      "The program runs for a complete 3 months (12 weeks). It features a blended format including interactive mentor sessions, independent work on your individual live project, and collaborative sprints on demo group projects.",
+      "We offer two structured batches: a 3-Month fast-track intensive batch and a 6-Month in-depth industrial batch. Both batches feature interactive mentor sessions, individual live project ownership, collaborative demo group projects, and verified certification.",
+  },
+  {
+    question: "What is the difference between the 3-Month and 6-Month batches?",
+    answer:
+      "The 3-Month batch is a fast-paced accelerator focused on core development, individual project delivery, and team demo sprints. The 6-Month batch includes all 3-month milestones plus an extended advanced track with complex architecture modules, CI/CD and deployment workflows, and deeper hands-on production experience.",
   },
   {
     question: "Is this a paid internship, and what does the student fee cover?",
@@ -163,6 +188,6 @@ export const INTERNSHIP_FAQS = [
   {
     question: "When and how will I receive my Certificate of Completion?",
     answer:
-      "Upon fulfilling the 3-month milestones, successfully delivering your individual live project, and contributing to the demo group project sprints, you will be awarded an official, verifiable DZ Infotech Certificate of Completion.",
+      "Upon fulfilling your selected 3-month or 6-month milestones, successfully delivering your individual live project, and contributing to group project deliverables, you will be awarded an official, verifiable DZ Infotech Certificate of Completion reflecting your completed tenure.",
   },
 ];
