@@ -313,7 +313,7 @@ export default function PartnerContactForm() {
                   {
                     icon: Phone,
                     label: "Call Us",
-                    value: "+91 93278 53727",
+                    value: "+91 93285 25395",
                     href: "tel:+919327853727",
                   },
                   {

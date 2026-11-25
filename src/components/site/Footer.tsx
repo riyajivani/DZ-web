@@ -138,7 +138,7 @@ export function Footer() {
                 <Mail className="mt-0.5 h-4 w-4 text-blue-600 shrink-0" /> info@dzinfotech.in
               </li>
               <li className="flex items-start gap-2">
-                <Phone className="mt-0.5 h-4 w-4 text-blue-600 shrink-0" /> +91 93278 53727
+                <Phone className="mt-0.5 h-4 w-4 text-blue-600 shrink-0" /> +91 93285 25395
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 text-blue-600 shrink-0" /> Bhavnagar,Gujarat,India

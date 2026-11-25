@@ -308,7 +308,7 @@ function TermsPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Phone className="h-4 w-4 text-sky-300 shrink-0" />
-                    <span>+91 93278 53727</span>
+                    <span>+91 93285 25395</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-sky-300 shrink-0" />
