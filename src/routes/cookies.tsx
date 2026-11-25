@@ -260,14 +260,10 @@ function CookiesPage() {
                   Have questions regarding our cookie practices or browser data management? Contact
                   the DZ Infotech team:
                 </p>
-                <div className="mt-6 grid gap-4 text-xs sm:text-sm sm:grid-cols-3">
+                <div className="mt-6 grid gap-4 text-xs sm:text-sm sm:grid-cols-2">
                   <div className="flex items-center gap-2">
                     <Mail className="h-4 w-4 text-sky-300 shrink-0" />
                     <span>info@dzinfotech.in</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Phone className="h-4 w-4 text-sky-300 shrink-0" />
-                    <span>+91 93278 53727</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-sky-300 shrink-0" />

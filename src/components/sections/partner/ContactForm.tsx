@@ -311,12 +311,6 @@ export default function PartnerContactForm() {
                     href: "mailto:info@dzinfotech.in",
                   },
                   {
-                    icon: Phone,
-                    label: "Call Us",
-                    value: "+91 93278 53727",
-                    href: "tel:+919327853727",
-                  },
-                  {
                     icon: MapPin,
                     label: "HQ Address",
                     value: "Bhavnagar, Gujarat, India",
