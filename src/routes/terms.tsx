@@ -301,7 +301,7 @@ function TermsPage() {
                   For official legal correspondence or contractual inquiries regarding our Terms of
                   Service:
                 </p>
-                <div className="mt-6 grid gap-4 text-xs sm:text-sm sm:grid-cols-3">
+                <div className="mt-6 grid gap-4 text-xs sm:text-sm sm:grid-cols-2">
                   <div className="flex items-center gap-2">
                     <Mail className="h-4 w-4 text-sky-300 shrink-0" />
                     <span>info@dzinfotech.in</span>
