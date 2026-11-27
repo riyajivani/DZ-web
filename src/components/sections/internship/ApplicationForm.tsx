@@ -14,12 +14,24 @@ import {
   Calendar,
   AlertCircle,
   HelpCircle,
+  QrCode,
+  Copy,
+  Check,
+  Receipt,
 } from "lucide-react";
 import { Container, SectionHeading } from "@/components/site";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import careerFormBg from "@/assets/career-form.png";
+import qrCodeImg from "@/assets/qr_code.jpeg";
 import { ACADEMIC_YEARS, INTERNSHIP_BATCHES } from "@/constants/internship";
 
 const GOOGLE_SHEET_INTERNSHIP_URL =
@@ -32,9 +44,11 @@ export interface InternshipFormState {
   college: string;
   year: string;
   batch: string;
+  refId: string;
   portfolio: string;
   message: string;
   acknowledged: boolean;
+  nonRefundableAcknowledged: boolean;
 }
 
 export default function InternshipApplicationForm() {
@@ -45,10 +59,21 @@ export default function InternshipApplicationForm() {
     college: "",
     year: "",
     batch: "",
+    refId: "",
     portfolio: "",
     message: "",
     acknowledged: false,
+    nonRefundableAcknowledged: false,
   });
+
+  const [paymentModalOpen, setPaymentModalOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyUPI = () => {
+    navigator.clipboard.writeText("9979464544@pthdfc");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
@@ -98,6 +123,12 @@ export default function InternshipApplicationForm() {
       errs.batch = "Please select your preferred internship batch (3 or 6 months)";
     }
 
+    if (!form.refId.trim()) {
+      errs.refId = "Payment Reference ID (Ref ID / UTR) is required";
+    } else if (form.refId.trim().length < 4) {
+      errs.refId = "Please enter a valid Reference / UTR ID";
+    }
+
     if (form.portfolio.trim()) {
       if (!/^https?:\/\/[^\s$.?#].[^\s]*$/i.test(form.portfolio.trim())) {
         errs.portfolio = "Please enter a valid URL (starting with http:// or https://)";
@@ -113,6 +144,11 @@ export default function InternshipApplicationForm() {
     if (!form.acknowledged) {
       errs.acknowledged =
         "Please confirm your understanding of the enrollment-based internship program";
+    }
+
+    if (!form.nonRefundableAcknowledged) {
+      errs.nonRefundableAcknowledged =
+        "Please confirm your understanding that the internship fee is non-refundable in any case";
     }
 
     setErrors(errs);
@@ -137,9 +173,13 @@ export default function InternshipApplicationForm() {
       params.append("year", form.year);
       params.append("batch", form.batch);
       params.append("duration", form.batch);
+      params.append("ref_id", form.refId.trim());
+      params.append("refId", form.refId.trim());
+      params.append("payment_ref_id", form.refId.trim());
       params.append("portfolio", form.portfolio);
       params.append("message", form.message);
       params.append("acknowledged", form.acknowledged ? "Yes" : "No");
+      params.append("non_refundable_acknowledged", form.nonRefundableAcknowledged ? "Yes" : "No");
       params.append("submission_date", new Date().toISOString());
 
       await fetch(GOOGLE_SHEET_INTERNSHIP_URL, {
@@ -159,9 +199,11 @@ export default function InternshipApplicationForm() {
         college: "",
         year: "",
         batch: "",
+        refId: "",
         portfolio: "",
         message: "",
         acknowledged: false,
+        nonRefundableAcknowledged: false,
       });
       setErrors({});
     } catch (err: unknown) {
@@ -259,7 +301,7 @@ export default function InternshipApplicationForm() {
                 <div className="mt-8 p-4 rounded-2xl bg-surface border border-border/60 w-full text-xs text-muted-foreground space-y-2">
                   <div className="flex items-center gap-2 font-semibold text-foreground">
                     <CheckCircle2 className="h-4 w-4 text-copper shrink-0" />
-                    <span>3 Months & 6 Months Flexible Batches</span>
+                    <span>3 Months (₹1,500) & 6 Months (₹3,000) Batches</span>
                   </div>
                   <div className="flex items-center gap-2 font-semibold text-foreground">
                     <CheckCircle2 className="h-4 w-4 text-copper shrink-0" />
@@ -385,7 +427,7 @@ export default function InternshipApplicationForm() {
                   />
                 </div>
 
-                {/* Portfolio URL */}
+                {/* Portfolio / Profile URL */}
                 <FloatingField
                   label="Portfolio / GitHub / LinkedIn URL (Optional)"
                   value={form.portfolio}
@@ -443,6 +485,87 @@ export default function InternshipApplicationForm() {
                     </p>
                   )}
                 </div>
+
+                {/* Payment Section (QR & Ref ID - at last after checkboxes) */}
+                <div className="space-y-4 pt-1">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4">
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-xl bg-copper/10 text-copper flex items-center justify-center shrink-0">
+                        <QrCode className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-foreground">
+                          Internship Fee Payment (UPI / QR Code)
+                        </p>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          Fee: <span className="font-semibold text-copper">₹1,500 (3 Months)</span>{" "}
+                          · <span className="font-semibold text-copper">₹3,000 (6 Months)</span>
+                        </p>
+                        <p className="text-3xs text-muted-foreground mt-0.5">
+                          UPI ID:{" "}
+                          <span className="font-mono text-foreground font-semibold">
+                            9979464544@pthdfc
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                    <Button
+                      type="button"
+                      onClick={() => setPaymentModalOpen(true)}
+                      variant="none"
+                      size="none"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-copper text-white text-xs font-semibold hover:bg-copper-glow cursor-pointer transition-all shadow-xs shrink-0 active:scale-98"
+                    >
+                      <QrCode className="h-3.5 w-3.5" />
+                      <span>View QR & UPI ID</span>
+                    </Button>
+                  </div>
+
+                  <FloatingField
+                    label="Payment Ref ID (UTR / Transaction ID)"
+                    value={form.refId}
+                    onChange={(v) => {
+                      setForm({ ...form, refId: v });
+                      if (errors.refId) setErrors((prev) => ({ ...prev, refId: "" }));
+                    }}
+                    required
+                    icon={Receipt}
+                    error={errors.refId}
+                  />
+                </div>
+
+                {/* Non-Refundable Fee Policy Acknowledgment Checkbox */}
+                <div className="rounded-2xl border border-border/80 bg-surface/70 p-4 transition-all hover:border-copper/40">
+                  <label className="flex items-start gap-3 cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      checked={form.nonRefundableAcknowledged}
+                      onChange={(e) => {
+                        setForm({ ...form, nonRefundableAcknowledged: e.target.checked });
+                        if (errors.nonRefundableAcknowledged) {
+                          setErrors((prev) => ({ ...prev, nonRefundableAcknowledged: "" }));
+                        }
+                      }}
+                      className="mt-0.5 h-4 w-4 rounded border-neutral-300 text-copper accent-copper focus:ring-copper cursor-pointer"
+                    />
+                    <div className="space-y-0.5 text-xs">
+                      <span className="font-semibold text-foreground">
+                        Non-Refundable Fee Policy Acknowledgment{" "}
+                        <span className="text-red-500">*</span>
+                      </span>
+                      <p className="text-muted-foreground leading-relaxed text-2xs">
+                        I acknowledge and agree that the internship enrollment and training fees
+                        (₹1,500 for 3 Months / ₹3,000 for 6 Months) are strictly non-refundable and
+                        non-returnable under any circumstances or in any case once paid.
+                      </p>
+                    </div>
+                  </label>
+                  {errors.nonRefundableAcknowledged && (
+                    <p className="text-[10px] text-red-500 mt-2 font-medium">
+                      {errors.nonRefundableAcknowledged}
+                    </p>
+                  )}
+                </div>
               </div>
 
               {/* Submit CTA & Feedback Messages */}
@@ -490,6 +613,87 @@ export default function InternshipApplicationForm() {
           </div>
         </div>
       </Container>
+
+      {/* Payment QR & UPI Modal */}
+      <Dialog open={paymentModalOpen} onOpenChange={setPaymentModalOpen}>
+        <DialogContent className="sm:max-w-md p-6 bg-white border border-border/80 rounded-3xl shadow-2xl">
+          <DialogHeader className="text-center sm:text-center">
+            <DialogTitle className="text-xl font-bold font-display text-foreground flex items-center justify-center gap-2">
+              <QrCode className="h-5 w-5 text-copper" />
+              <span>Scan & Pay via UPI</span>
+            </DialogTitle>
+            <DialogDescription className="text-xs text-muted-foreground mt-1 text-center">
+              Scan the QR code with any UPI app (GPay, PhonePe, Paytm, BHIM) or transfer to the UPI
+              ID.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="flex flex-col items-center justify-center my-1 space-y-4">
+            {/* Fee Structure Summary Cards */}
+            <div className="w-full grid grid-cols-2 gap-2.5 text-center">
+              <div className="p-2.5 rounded-xl bg-copper/5 border border-copper/15">
+                <p className="text-3xs uppercase tracking-wider text-muted-foreground font-semibold">
+                  3 Months Batch
+                </p>
+                <p className="text-base font-bold text-copper mt-0.5">₹1,500</p>
+              </div>
+              <div className="p-2.5 rounded-xl bg-copper/5 border border-copper/15">
+                <p className="text-3xs uppercase tracking-wider text-muted-foreground font-semibold">
+                  6 Months Batch
+                </p>
+                <p className="text-base font-bold text-copper mt-0.5">₹3,000</p>
+              </div>
+            </div>
+
+            {/* QR Code Container */}
+            <div className="p-3 bg-white rounded-2xl border-2 border-copper/25 shadow-md">
+              <img
+                src={qrCodeImg}
+                alt="DZ Infotech Payment QR Code"
+                className="w-52 h-52 object-contain rounded-xl"
+              />
+            </div>
+
+            {/* UPI ID Bar with Copy */}
+            <div className="w-full bg-surface border border-border/80 rounded-2xl p-3 flex items-center justify-between gap-3">
+              <div className="text-left overflow-hidden">
+                <p className="text-3xs uppercase tracking-wider text-muted-foreground font-semibold">
+                  UPI ID
+                </p>
+                <p className="font-mono text-xs sm:text-sm font-bold text-foreground select-all">
+                  9979464544@pthdfc
+                </p>
+              </div>
+              <Button
+                type="button"
+                onClick={handleCopyUPI}
+                variant="none"
+                size="none"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-copper text-white text-xs font-semibold hover:bg-copper-glow cursor-pointer transition-colors shadow-xs shrink-0"
+              >
+                {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+                <span>{copied ? "Copied!" : "Copy"}</span>
+              </Button>
+            </div>
+
+            {/* Next Step Instructions */}
+            <div className="w-full rounded-2xl bg-surface/70 p-3.5 text-left border border-border/50 text-2xs text-muted-foreground space-y-1.5">
+              <p className="font-semibold text-foreground text-xs">
+                How to complete your application:
+              </p>
+              <p>
+                1. Pay your internship enrollment fee (₹1,500 for 3 Months or ₹3,000 for 6 Months)
+                via the QR code or UPI ID above.
+              </p>
+              <p>2. Copy the 12-digit UTR / Transaction Reference ID from your payment receipt.</p>
+              <p>
+                3. Enter the Reference ID in the <strong>Payment Ref ID</strong> field on the
+                application form and submit.
+              </p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
